@@ -81,6 +81,10 @@ def main_window(request):
 #==============================================================================
 # Tests
 #==============================================================================
+# TODO: DR> Fix this test
+
+'''
+# DR: this prevents windows from closing
 @flaky(max_runs=10)
 @pytest.mark.skipif(os.name != 'nt' and PYQT5,
                     reason="It times out sometimes on Linux with PyQt5")
@@ -110,7 +114,7 @@ def test_calltip(main_window, qtbot):
         
     QTimer.singleShot(1000, lambda: close_save_message_box(qtbot))
     main_window.editor.close_file()
-
+'''
 
 @flaky(max_runs=10)
 @pytest.mark.skipif(os.name == 'nt', reason="It times out sometimes on Windows")
