@@ -1,23 +1,23 @@
-# Spyder - The Scientific PYthon Development EnviRonment
+# TRex - The Scientific PYthon Development EnviRonment
 
-Copyright © Spyder Project Contributors.
+Copyright © TRex Project Contributors.
 
 ## Project details
-[![license](https://img.shields.io/pypi/l/spyder.svg)](./LICENSE)
-[![pypi version](https://img.shields.io/pypi/v/spyder.svg)](https://pypi.python.org/pypi/spyder)
-[![Join the chat at https://gitter.im/spyder-ide/public](https://badges.gitter.im/spyder-ide/spyder.svg)](https://gitter.im/spyder-ide/public)
+[![license](https://img.shields.io/pypi/l/trex.svg)](./LICENSE)
+[![pypi version](https://img.shields.io/pypi/v/trex.svg)](https://pypi.python.org/pypi/trex)
+[![Join the chat at https://gitter.im/trex-ide/public](https://badges.gitter.im/trex-ide/trex.svg)](https://gitter.im/trex-ide/public)
 
 ## Build status
-[![Travis status](https://travis-ci.org/spyder-ide/spyder.svg?branch=master)](https://travis-ci.org/spyder-ide/spyder)
-[![AppVeyor status](https://ci.appveyor.com/api/projects/status/tvjcqa4kf53br8s0/branch/master?svg=true)](https://ci.appveyor.com/project/spyder-ide/spyder/branch/master)
-[![CircleCI](https://circleci.com/gh/spyder-ide/spyder.svg?style=svg)](https://circleci.com/gh/spyder-ide/spyder)
-[![Coverage Status](https://coveralls.io/repos/github/spyder-ide/spyder/badge.svg?branch=master)](https://coveralls.io/github/spyder-ide/spyder?branch=master)
+[![Travis status](https://travis-ci.org/trex-ide/trex.svg?branch=master)](https://travis-ci.org/trex-ide/trex)
+[![AppVeyor status](https://ci.appveyor.com/api/projects/status/tvjcqa4kf53br8s0/branch/master?svg=true)](https://ci.appveyor.com/project/trex-ide/trex/branch/master)
+[![CircleCI](https://circleci.com/gh/trex-ide/trex.svg?style=svg)](https://circleci.com/gh/trex-ide/trex)
+[![Coverage Status](https://coveralls.io/repos/github/trex-ide/trex/badge.svg?branch=master)](https://coveralls.io/github/trex-ide/trex?branch=master)
 
 ## Overview
 
 ![screenshot](./img_src/screenshot.png)
 
-Spyder is a Python development environment with a lot of features:
+TRex is a Python development environment with a lot of features:
 
 * **Editor**
 
@@ -50,25 +50,25 @@ Spyder is a Python development environment with a lot of features:
 
 * **History log**
 
-Spyder may also be used as a PyQt5/PyQt4 extension library (module
-`spyder`). For example, the Python interactive shell widget used in
-Spyder may be embedded in your own PyQt5/PyQt4 application.
+TRex may also be used as a PyQt5/PyQt4 extension library (module
+`trex`). For example, the Python interactive shell widget used in
+TRex may be embedded in your own PyQt5/PyQt4 application.
 
 
 ## Documentation
 
-You can read the Spyder documentation at:
+You can read the TRex documentation at:
 
-http://pythonhosted.org/spyder/
+http://pythonhosted.org/trex/
 
 
 ## Installation
 
 This section explains how to install the latest stable release of
-Spyder. If you prefer testing the development version, please use
+TRex. If you prefer testing the development version, please use
 the `bootstrap` script (see next section).
 
-The easiest way to install Spyder is:
+The easiest way to install TRex is:
 
 ### On Windows:
 
@@ -81,7 +81,7 @@ Using one (and only one) of these scientific Python distributions:
 ### On Mac OSX:
 
 - Using our DMG installer, which can be found
-  [here](https://github.com/spyder-ide/spyder/releases).
+  [here](https://github.com/trex-ide/trex/releases).
 - Using the [Anaconda Distribution](http://continuum.io/downloads).
 - Through [MacPorts](http://www.macports.org/).
 
@@ -94,36 +94,36 @@ Using one (and only one) of these scientific Python distributions:
 
 ### Cross-platform way from source
 
-You can also install Spyder with the `pip` package manager, which comes by
+You can also install TRex with the `pip` package manager, which comes by
 default with most Python installations. For that you need to use the
 command:
 
-    pip install spyder
+    pip install trex
 
-To upgrade Spyder to its latest version, if it was installed before, you need
+To upgrade TRex to its latest version, if it was installed before, you need
 to run
 
-    pip install --upgrade spyder
+    pip install --upgrade trex
 
 For more details on supported platforms, please refer to our
-[installation instructions](http://pythonhosted.org/spyder/installation.html).
+[installation instructions](http://pythonhosted.org/trex/installation.html).
 
 **Important note**: This does not install the graphical Python libraries (i.e.
-PyQt5 or PyQt4) that Spyder depends on. Those have to be installed separately
+PyQt5 or PyQt4) that TRex depends on. Those have to be installed separately
 after installing Python.
 
 
 ## Running from source
 
-The fastest way to run Spyder is to get the source code using git, install
+The fastest way to run TRex is to get the source code using git, install
 PyQt5 or PyQt4, and run these commands:
 
 1. Install our *runtime dependencies* (see below).
-2. `cd /your/spyder/git-clone`
+2. `cd /your/trex/git-clone`
 3. `python bootstrap.py`
 
-You may want to do this for fixing bugs in Spyder, adding new
-features, learning how Spyder works or just getting a taste of it.
+You may want to do this for fixing bugs in TRex, adding new
+features, learning how TRex works or just getting a taste of it.
 
 
 ## Dependencies
@@ -135,7 +135,7 @@ distributions.
 
 ### Build dependencies
 
-When installing Spyder from its source package, the only requirement is to have
+When installing TRex from its source package, the only requirement is to have
 a Python version greater than 2.7 (Python 3.2 is not supported anymore).
 
 ### Runtime dependencies
@@ -155,7 +155,7 @@ a Python version greater than 2.7 (Python 3.2 is not supported anymore).
 * **Qtawesome** 0.4.1+: To have an icon theme based on FontAwesome.
 * **Pickleshare**: Show import completions on the Python consoles.
 * **PyZMQ**: Run introspection services asynchronously.
-* **QtPy** 1.1.0+: Abstracion layer for Python Qt bindings so that Spyder can run on PyQt4
+* **QtPy** 1.1.0+: Abstracion layer for Python Qt bindings so that TRex can run on PyQt4
   and PyQt5.
 * **Chardet**: Character encoding auto-detection in Python.
 * **Numpydoc**: Used by Jedi to get return types for functions with Numpydoc docstrings.
@@ -173,12 +173,12 @@ a Python version greater than 2.7 (Python 3.2 is not supported anymore).
 
 * For code development please go to:
 
-    <https://github.com/spyder-ide/spyder>
+    <https://github.com/trex-ide/trex>
 
 * For bug reports and feature requests:
 
-    <https://github.com/spyder-ide/spyder/issues>
+    <https://github.com/trex-ide/trex/issues>
 
 * For discussions and troubleshooting:
 
-    <http://groups.google.com/group/spyderlib>
+    <http://groups.google.com/group/trexlib>

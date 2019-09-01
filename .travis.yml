@@ -1,4 +1,4 @@
-# https://travis-ci.org/spyder-ide/spyder
+# https://travis-ci.org/trex-ide/trex
 
 language: python
 dist: trusty

@@ -32,6 +32,6 @@ if [ "$CIRCLECI" = "true" ]; then
     if [ "$CIRCLE_NODE_INDEX" = "3" ]; then
         pip install -q -e .[test]
     else
-        conda install -q ciocheck -c spyder-ide --no-update-deps
+        conda install -q ciocheck -c trex-ide --no-update-deps
     fi
 fi

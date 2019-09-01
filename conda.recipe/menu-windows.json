@@ -3,16 +3,16 @@
     "menu_items":
     [
         {
-            "name": "Spyder",
-            "pywscript": "${PYTHON_SCRIPTS}/spyder-script.py",
+            "name": "TRex",
+            "pywscript": "${PYTHON_SCRIPTS}/trex-script.py",
             "workdir": "${PERSONALDIR}/Python Scripts",
-            "icon": "${PYTHON_SCRIPTS}/spyder.ico"
+            "icon": "${PYTHON_SCRIPTS}/trex.ico"
         },
         {
-            "name": "Reset Spyder Settings",
-            "pyscript": "${PYTHON_SCRIPTS}/spyder-script.py --reset",
+            "name": "Reset TRex Settings",
+            "pyscript": "${PYTHON_SCRIPTS}/trex-script.py --reset",
             "workdir": "${USERPROFILE}",
-            "icon": "${PYTHON_SCRIPTS}/spyder_reset.ico"
+            "icon": "${PYTHON_SCRIPTS}/trex_reset.ico"
         }
     ]
 }

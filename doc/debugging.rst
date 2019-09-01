@@ -1,7 +1,7 @@
 Debugging
 =========
 
-Debugging in Spyder is supported thanks to the following Python modules:
+Debugging in TRex is supported thanks to the following Python modules:
 
 * `pdb`: the Python debugger, which is included in Python standard library.
     
@@ -12,7 +12,7 @@ Debugging in Spyder is supported thanks to the following Python modules:
 Debugging with pdb
 ------------------
 
-The Python debugger is partly integrated in Spyder:
+The Python debugger is partly integrated in TRex:
 
 * Breakpoints may be defined in the :doc:`editor`.
 

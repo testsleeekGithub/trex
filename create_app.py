@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © Spyder Project Contributors
+# Copyright © TRex Project Contributors
 # Licensed under the terms of the MIT License
-# (see spyder/__init__.py for details)
+# (see trex/__init__.py for details)
 
 """
 Create a stand-alone Mac OS X app using py2app
@@ -26,10 +26,10 @@ import sys
 
 from IPython.core.completerlib import module_list
 
-from spyder import __version__ as spy_version
-from spyder.config.utils import EDIT_FILETYPES, _get_extensions
-from spyder.config.base import MAC_APP_NAME
-from spyder.utils.programs import find_program
+from trex import __version__ as spy_version
+from trex.config.utils import EDIT_FILETYPES, _get_extensions
+from trex.config.base import MAC_APP_NAME
+from trex.utils.programs import find_program
 
 
 PY2 = sys.version[0] == '2'
@@ -74,7 +74,7 @@ IMPORTANT NOTE
 Before running this script, please be sure of following the instructions
 present in
 
-https://github.com/spyder-ide/mac-application/blob/master/How to build the app.md
+https://github.com/trex-ide/mac-application/blob/master/How to build the app.md
 
 This script only runs succesfully with those instructions!
 
@@ -88,13 +88,13 @@ print(main_message)
 # App creation
 #==============================================================================
 APP_MAIN_SCRIPT = MAC_APP_NAME[:-4] + '.py'
-shutil.copyfile('scripts/spyder', APP_MAIN_SCRIPT)
+shutil.copyfile('scripts/trex', APP_MAIN_SCRIPT)
 
 APP = [APP_MAIN_SCRIPT]
 DEPS = ['pylint', 'logilab', 'astroid', 'pep8', 'setuptools']
 EXCLUDES = DEPS + ['mercurial']
-PACKAGES = ['spyder', 'spyder_breakpoints', 'spyder_io_dcm', 'spyder_io_hdf5',
-            'spyder_profiler', 'spyder_pylint', 'sphinx', 'jinja2', 'docutils',
+PACKAGES = ['trex', 'trex_breakpoints', 'trex_io_dcm', 'trex_io_hdf5',
+            'trex_profiler', 'trex_pylint', 'sphinx', 'jinja2', 'docutils',
             'alabaster', 'babel', 'snowballstemmer', 'sphinx_rtd_theme',
             'IPython', 'ipykernel', 'ipython_genutils', 'jupyter_client',
             'jupyter_core', 'traitlets', 'qtconsole', 'pexpect', 'jedi',
@@ -113,11 +113,11 @@ OPTIONS = {
     'packages': PACKAGES,
     'includes': INCLUDES,
     'excludes': EXCLUDES,
-    'iconfile': 'img_src/spyder.icns',
+    'iconfile': 'img_src/trex.icns',
     'plist': {'CFBundleDocumentTypes': [{'CFBundleTypeExtensions': EDIT_EXT,
                                          'CFBundleTypeName': 'Text File',
                                          'CFBundleTypeRole': 'Editor'}],
-              'CFBundleIdentifier': 'org.spyder-ide',
+              'CFBundleIdentifier': 'org.trex-ide',
               'CFBundleShortVersionString': spy_version}
 }
 
@@ -141,8 +141,8 @@ system_python_lib = get_python_lib()
 app_python_lib = osp.join(resources, 'lib', 'python%s' % py_ver)
 
 # Add our docs to the app
-docs_orig = 'build/lib/spyder/doc'
-docs_dest = osp.join(app_python_lib, 'spyder', 'doc')
+docs_orig = 'build/lib/trex/doc'
+docs_dest = osp.join(app_python_lib, 'trex', 'doc')
 shutil.copytree(docs_orig, docs_dest)
 
 # Create a minimal library inside Resources to add it to PYTHONPATH instead of
@@ -151,8 +151,8 @@ shutil.copytree(docs_orig, docs_dest)
 # inside the app.
 minimal_lib = osp.join(app_python_lib, 'minimal-lib')
 os.mkdir(minimal_lib)
-minlib_pkgs = ['spyder', 'spyder_breakpoints', 'spyder_io_dcm',
-               'spyder_io_hdf5', 'spyder_profiler', 'spyder_pylint']
+minlib_pkgs = ['trex', 'trex_breakpoints', 'trex_io_dcm',
+               'trex_io_hdf5', 'trex_profiler', 'trex_pylint']
 for p in minlib_pkgs:
     shutil.copytree(osp.join(app_python_lib, p), osp.join(minimal_lib, p))
 
@@ -208,7 +208,7 @@ for p in PROGRAMS:
     _change_interpreter(p)
 """ % str(PROGRAMS)
 
-# Add RESOURCEPATH to PATH, so that Spyder can find PROGRAMS inside the app
+# Add RESOURCEPATH to PATH, so that TRex can find PROGRAMS inside the app
 new_path = \
 """
 old_path = os.environ['PATH']
@@ -225,7 +225,7 @@ os.environ['IPYTHONDIR'] = get_ipython_dir()
 
 # Add a way to grab environment variables inside the app.
 # Thanks a lot to Ryan Clary for posting it here
-# https://groups.google.com/forum/?fromgroups=#!topic/spyderlib/lCXOYk-FSWI
+# https://groups.google.com/forum/?fromgroups=#!topic/trexlib/lCXOYk-FSWI
 get_env = \
 r"""
 def _get_env():

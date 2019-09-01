@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © Spyder Project Contributors
+# Copyright © TRex Project Contributors
 # Licensed under the terms of the MIT License
 #
 
@@ -17,15 +17,15 @@ import pytest
 
 
 # To activate/deactivate certain things for pytest's only
-os.environ['SPYDER_PYTEST'] = 'True'
+os.environ['TREX_PYTEST'] = 'True'
 
 
 def main():
     """
     Run pytest tests.
     """
-    errno = pytest.main(['-x', 'spyder',  '-v', '-rw', '--durations=10',
-                         '--cov=spyder', '--cov-report=term-missing'])
+    errno = pytest.main(['-x', 'trex',  '-v', '-rw', '--durations=10',
+                         '--cov=trex', '--cov-report=term-missing'])
 
     # sys.exit doesn't work here because some things could be running
     # in the background (e.g. closing the main window) when this point

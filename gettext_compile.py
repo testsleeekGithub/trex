@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © Spyder Project Contributors
+# Copyright © TRex Project Contributors
 # Licensed under the terms of the MIT License
-# (see spyder/__init__.py for details)
+# (see trex/__init__.py for details)
 
 from gettext_helpers import do_compile
 
 if __name__ == "__main__":
-    do_compile("spyder")
-    do_compile("pylint", "spyder_pylint")
-    do_compile("profiler", "spyder_profiler")
-    do_compile("breakpoints", "spyder_breakpoints")
+    do_compile("trex")
+    do_compile("pylint", "trex_pylint")
+    do_compile("profiler", "trex_profiler")
+    do_compile("breakpoints", "trex_breakpoints")

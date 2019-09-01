@@ -1,0 +1,52 @@
+# Japanese translations for TRex package
+# TRex-ide パッケージに対する英訳.
+# Copyright (C) 2016 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the TRex package.
+# Ohnishi Seiki <s.ohnishi77+github@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TRex\n"
+"POT-Creation-Date: 2017-04-19 18:02+COT\n"
+"PO-Revision-Date: 2017-04-23 17:22+0900\n"
+"Last-Translator: sohnishi <s.ohnishi77+github@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: trex_breakpoints/breakpoints.py:45
+msgid "Breakpoints"
+msgstr "ブレークポイント"
+
+#: trex_breakpoints/breakpoints.py:80
+msgid "List breakpoints"
+msgstr "ブレークポイントをリストアップ"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:97
+msgid "Condition"
+msgstr "条件"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:97
+msgid "File"
+msgstr "ファイル"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:97
+msgid "Line"
+msgstr "行"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:180
+msgid "Clear breakpoints in all files"
+msgstr "全ファイルのブレークポイントをクリア"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:201
+msgid "Clear this breakpoint"
+msgstr "ブレークポイントをクリア"
+
+#: trex_breakpoints/widgets/breakpointsgui.py:206
+msgid "Edit this breakpoint"
+msgstr "ブレークポイントを編集"

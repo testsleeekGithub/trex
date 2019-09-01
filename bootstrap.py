@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 #
 # Licensed under the terms of the MIT License
-# (see spyder/__init__.py for details)
+# (see trex/__init__.py for details)
 
 """
-Bootstrapping Spyder
+Bootstrapping TRex
 
-Detect environment and execute Spyder from source checkout
+Detect environment and execute TRex from source checkout
 See Issue 741
 """
 
@@ -25,11 +25,11 @@ import optparse
 # --- Parse command line
 
 parser = optparse.OptionParser(
-    usage="python bootstrap.py [options] [-- spyder_options]",
+    usage="python bootstrap.py [options] [-- trex_options]",
     epilog="""\
-Arguments for Spyder's main script are specified after the --
+Arguments for TRex's main script are specified after the --
 symbol (example: `python bootstrap.py -- --show-console`).
-Type `python bootstrap.py -- --help` to read about Spyder
+Type `python bootstrap.py -- --help` to read about TRex
 options.""")
 parser.add_option('--gui', default=None,
                   help="GUI toolkit: pyqt5 (for PyQt5), pyqt (for PyQt4) or "
@@ -37,42 +37,42 @@ parser.add_option('--gui', default=None,
 parser.add_option('--hide-console', action='store_true',
                   default=False, help="Hide parent console window (Windows only)")
 parser.add_option('--test', dest="test", action='store_true', default=False,
-                  help="Test Spyder with a clean settings dir")
+                  help="Test TRex with a clean settings dir")
 parser.add_option('--no-apport', action='store_true',
                   default=False, help="Disable Apport exception hook (Ubuntu)")
 parser.add_option('--debug', action='store_true',
-                  default=False, help="Run Spyder in debug mode")
+                  default=False, help="Run TRex in debug mode")
 
 options, args = parser.parse_args()
 
-# Store variable to be used in self.restart (restart spyder instance)
-os.environ['SPYDER_BOOTSTRAP_ARGS'] = str(sys.argv[1:])
+# Store variable to be used in self.restart (restart trex instance)
+os.environ['TREX_BOOTSTRAP_ARGS'] = str(sys.argv[1:])
 
 assert options.gui in (None, 'pyqt5', 'pyqt', 'pyside'), \
        "Invalid GUI toolkit option '%s'" % options.gui
 
 # For testing purposes
 if options.test:
-    os.environ['SPYDER_TEST'] = 'True'
+    os.environ['TREX_TEST'] = 'True'
 
-# Prepare arguments for Spyder's main script
+# Prepare arguments for TRex's main script
 sys.argv = [sys.argv[0]] + args
 
 
-print("Executing Spyder from source checkout")
+print("Executing TRex from source checkout")
 DEVPATH = osp.dirname(osp.abspath(__file__))
 
 # To activate/deactivate certain things for development
-os.environ['SPYDER_DEV'] = 'True'
+os.environ['TREX_DEV'] = 'True'
 
 # --- Test environment for surprises
 
-# Warn if Spyder is located on non-ASCII path
+# Warn if TRex is located on non-ASCII path
 # See Issue 812
 try:
     osp.join(DEVPATH, 'test')
 except UnicodeDecodeError:
-    print("STOP: Spyder is located in the path with non-ASCII characters,")
+    print("STOP: TRex is located in the path with non-ASCII characters,")
     print("      which is known to cause problems (see issue #812).")
     try:
         input = raw_input
@@ -97,7 +97,7 @@ if sys.excepthook != sys.__excepthook__:
 
 # --- Continue
 
-from spyder.utils.vcs import get_git_revision
+from trex.utils.vcs import get_git_revision
 print("Revision %s, Branch: %s" % get_git_revision(DEVPATH))
 
 sys.path.insert(0, DEVPATH)
@@ -105,7 +105,7 @@ print("01. Patched sys.path with %s" % DEVPATH)
 
 
 # Selecting the GUI toolkit: PyQt5 if installed, otherwise PySide or PyQt4
-# (Note: PyQt4 is still the officially supported GUI toolkit for Spyder)
+# (Note: PyQt4 is still the officially supported GUI toolkit for TRex)
 if options.gui is None:
     try:
         import PyQt5  # analysis:ignore
@@ -125,41 +125,41 @@ else:
 
 
 if options.debug:
-    # safety check - Spyder config should not be imported at this point
-    if "spyder.config.base" in sys.modules:
-        sys.exit("ERROR: Can't enable debug mode - Spyder is already imported")
+    # safety check - TRex config should not be imported at this point
+    if "trex.config.base" in sys.modules:
+        sys.exit("ERROR: Can't enable debug mode - TRex is already imported")
     print("0x. Switching debug mode on")
-    os.environ["SPYDER_DEBUG"] = "True"
+    os.environ["TREX_DEBUG"] = "True"
     # this way of interaction suxx, because there is no feedback
     # if operation is successful
 
 
 # Checking versions (among other things, this has the effect of setting the
 # QT_API environment variable if this has not yet been done just above)
-from spyder import get_versions
+from trex import get_versions
 versions = get_versions(reporev=False)
-print("03. Imported Spyder %s" % versions['spyder'])
+print("03. Imported TRex %s" % versions['trex'])
 print("    [Python %s %dbits, Qt %s, %s %s on %s]" % \
       (versions['python'], versions['bitness'], versions['qt'],
        versions['qt_api'], versions['qt_api_ver'], versions['system']))
 
 
 # Check that we have the right qtpy version
-from spyder.utils import programs
+from trex.utils import programs
 if not programs.is_module_installed('qtpy', '>=1.1.0'):
     print("")
     sys.exit("ERROR: Your qtpy version is outdated. Please install qtpy "
-             "1.1.0 or higher to be able to work with Spyder!")
+             "1.1.0 or higher to be able to work with TRex!")
 
 
-# --- Executing Spyder
+# --- Executing TRex
 
 if not options.hide_console and os.name == 'nt':
     print("0x. Enforcing parent console (Windows only)")
     sys.argv.append("--show-console")  # Windows only: show parent console
 
-print("04. Running Spyder")
-from spyder.app import start
+print("04. Running TRex")
+from trex.app import start
 
 time_lapse = time.time()-time_start
 print("Bootstrap completed in " +

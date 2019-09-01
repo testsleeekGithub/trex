@@ -1,4 +1,4 @@
-# https://circleci.com/gh/spyder-ide/spyder
+# https://circleci.com/gh/trex-ide/trex
 
 machine:
   environment:
@@ -25,7 +25,7 @@ dependencies:
 test:
   override:
     # Style checks
-    #- export PATH="$HOME/miniconda/bin:$PATH" && source activate test && ciocheck spyder: # note the colon
+    #- export PATH="$HOME/miniconda/bin:$PATH" && source activate test && ciocheck trex: # note the colon
     #    parallel: true
     # PyQt5
     - ./continuous_integration/circle/test-qt5.sh || ./continuous_integration/circle/test-qt5.sh || ./continuous_integration/circle/test-qt5.sh: # note the colon

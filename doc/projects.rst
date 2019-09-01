@@ -1,7 +1,7 @@
 Projects
 ========
 
-Spyder allows users to associate a given directory with a project. This has two
+TRex allows users to associate a given directory with a project. This has two
 main advantages:
 
 1. Projects remember the list of open files in Editor. This permits to easily
@@ -47,7 +47,7 @@ belong to project
 Version Control Integration
 ---------------------------
 
-Spyder has limited integration with Git_ and Mercurial_. Commit and browse
+TRex has limited integration with Git_ and Mercurial_. Commit and browse
 commands are available by right-clicking on relevant files that reside within
 an already initialized repository. This menu assume that certain commands are
 available on the system path.

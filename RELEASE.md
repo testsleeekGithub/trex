@@ -1,4 +1,4 @@
-To release a new version of Spyder you need to follow these steps:
+To release a new version of TRex you need to follow these steps:
 
 * git pull or git fetch/merge
 
@@ -36,7 +36,7 @@ To release a new version of Spyder you need to follow these steps:
 
 * Optional: Create conda packages
     - conda build conda.recipe
-    - anaconda upload spyder-*.tar.bz2 -u spyder-ide
+    - anaconda upload trex-*.tar.bz2 -u trex-ide
 
 * Publish release announcements to our list and the SciPy list
 

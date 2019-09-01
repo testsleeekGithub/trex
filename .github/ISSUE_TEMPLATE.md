@@ -14,7 +14,7 @@
 
 ## Versions and main components
 
-* Spyder Version:
+* TRex Version:
 * Python Version:
 * Qt Version:
 * PyQt Version:

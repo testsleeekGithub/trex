@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © Spyder Project Contributors
+# Copyright © TRex Project Contributors
 # Licensed under the terms of the MIT License
-# (see spyder/__init__.py for details)
+# (see trex/__init__.py for details)
 
 """
-Spyder
+TRex
 ======
 
 The Scientific PYthon Development EnviRonment
@@ -37,7 +37,7 @@ PY3 = sys.version_info[0] == 3
 #==============================================================================
 v = sys.version_info
 if v[:2] < (2,7) or (v[0] >= 3 and v[:2] < (3,3)):
-    error = "ERROR: Spyder requires Python version 2.7 or 3.3 or above."
+    error = "ERROR: TRex requires Python version 2.7 or 3.3 or above."
     print(error, file=sys.stderr)
     sys.exit(1)
 
@@ -45,9 +45,9 @@ if v[:2] < (2,7) or (v[0] >= 3 and v[:2] < (3,3)):
 #==============================================================================
 # Constants
 #==============================================================================
-NAME = 'spyder'
-LIBNAME = 'spyder'
-from spyder import __version__, __project_url__
+NAME = 'trex'
+LIBNAME = 'trex'
+from trex import __version__, __project_url__
 
 
 #==============================================================================
@@ -78,15 +78,15 @@ def get_data_files():
     """Return data_files in a platform dependent manner"""
     if sys.platform.startswith('linux'):
         if PY3:
-            data_files = [('share/applications', ['scripts/spyder3.desktop']),
-                          ('share/pixmaps', ['img_src/spyder3.png']),
-                          ('share/metainfo', ['scripts/spyder3.appdata.xml'])]
+            data_files = [('share/applications', ['scripts/trex3.desktop']),
+                          ('share/pixmaps', ['img_src/trex3.png']),
+                          ('share/metainfo', ['scripts/trex3.appdata.xml'])]
         else:
-            data_files = [('share/applications', ['scripts/spyder.desktop']),
-                          ('share/pixmaps', ['img_src/spyder.png'])]
+            data_files = [('share/applications', ['scripts/trex.desktop']),
+                          ('share/pixmaps', ['img_src/trex.png'])]
     elif os.name == 'nt':
-        data_files = [('scripts', ['img_src/spyder.ico',
-                                   'img_src/spyder_reset.ico'])]
+        data_files = [('scripts', ['img_src/trex.ico',
+                                   'img_src/trex_reset.ico'])]
     else:
         data_files = []
     return data_files
@@ -96,17 +96,17 @@ def get_packages():
     """Return package list"""
     packages = (
         get_subpackages(LIBNAME)
-        + get_subpackages('spyder_breakpoints')
-        + get_subpackages('spyder_profiler')
-        + get_subpackages('spyder_pylint')
-        + get_subpackages('spyder_io_dcm')
-        + get_subpackages('spyder_io_hdf5')
+        + get_subpackages('trex_breakpoints')
+        + get_subpackages('trex_profiler')
+        + get_subpackages('trex_pylint')
+        + get_subpackages('trex_io_dcm')
+        + get_subpackages('trex_io_hdf5')
         )
     return packages
 
 
 #==============================================================================
-# Make Linux detect Spyder desktop file
+# Make Linux detect TRex desktop file
 #==============================================================================
 class MyInstallData(install_data):
     def run(self):
@@ -137,7 +137,7 @@ try:
     from sphinx import setup_command
 
     class MyBuild(build):
-        user_options = [('no-doc', None, "Don't build Spyder documentation")] \
+        user_options = [('no-doc', None, "Don't build TRex documentation")] \
                        + build.user_options
         def __init__(self, *args, **kwargs):
             build.__init__(self, *args, **kwargs)
@@ -152,7 +152,7 @@ try:
 
 
     class MyInstall(install):
-        user_options = [('no-doc', None, "Don't build Spyder documentation")] \
+        user_options = [('no-doc', None, "Don't build TRex documentation")] \
                        + install.user_options
         def __init__(self, *args, **kwargs):
             install.__init__(self, *args, **kwargs)
@@ -165,7 +165,7 @@ try:
             build = self.get_finalized_command('build')
             sys.path.insert(0, os.path.abspath(build.build_lib))
             dirname = self.distribution.get_command_obj('build').build_purelib
-            self.builder_target_dir = osp.join(dirname, 'spyder', 'doc')
+            self.builder_target_dir = osp.join(dirname, 'trex', 'doc')
 
             if not osp.exists(self.builder_target_dir):
                 os.mkdir(self.builder_target_dir)
@@ -185,10 +185,10 @@ try:
 
             # Building chm doc, if HTML Help Workshop is installed
             if hhc_exe is not None:
-                fname = osp.join(self.builder_target_dir, 'Spyderdoc.chm')
+                fname = osp.join(self.builder_target_dir, 'TRexdoc.chm')
                 subprocess.call('"%s" %s' % (hhc_exe, fname), shell=True)
                 if osp.isfile(fname):
-                    dest = osp.join(dirname, 'spyder')
+                    dest = osp.join(dirname, 'trex')
                     try:
                         shutil.move(fname, dest)
                     except shutil.Error:
@@ -208,9 +208,9 @@ except ImportError:
 # platforms due to a bug in pip installation process (see Issue 1158)
 SCRIPTS = ['%s_win_post_install.py' % NAME]
 if PY3 and sys.platform.startswith('linux'):
-    SCRIPTS.append('spyder3')
+    SCRIPTS.append('trex3')
 else:
-    SCRIPTS.append('spyder')
+    SCRIPTS.append('trex')
 
 
 #==============================================================================
@@ -220,7 +220,7 @@ EXTLIST = ['.mo', '.svg', '.png', '.css', '.html', '.js', '.chm', '.ini',
            '.txt', '.rst', '.qss', '.ttf', '.json', '.c', '.cpp', '.java',
            '.md', '.R', '.csv', '.ipynb']
 if os.name == 'nt':
-    SCRIPTS += ['spyder.bat']
+    SCRIPTS += ['trex.bat']
     EXTLIST += ['.ico']
 
 
@@ -231,25 +231,25 @@ setup_args = dict(name=NAME,
       version=__version__,
       description='Scientific PYthon Development EnviRonment',
       long_description=
-"""Spyder is an interactive Python development environment providing
+"""TRex is an interactive Python development environment providing
 MATLAB-like features in a simple and light-weighted software.
 It also provides ready-to-use pure-Python widgets to your PyQt5 or
 PyQt4 application: source code editor with syntax highlighting and
 code introspection/analysis features, NumPy array editor, dictionary
 editor, Python console, etc.""",
       download_url='%s/files/%s-%s.zip' % (__project_url__, NAME, __version__),
-      author="The Spyder Project Contributors",
+      author="The TRex Project Contributors",
       url=__project_url__,
       license='MIT',
       keywords='PyQt5 PyQt4 editor shell console widgets IDE',
       platforms=['any'],
       packages=get_packages(),
       package_data={LIBNAME: get_package_data(LIBNAME, EXTLIST),
-                    'spyder_breakpoints': get_package_data('spyder_breakpoints', EXTLIST),
-                    'spyder_profiler': get_package_data('spyder_profiler', EXTLIST),
-                    'spyder_pylint': get_package_data('spyder_pylint', EXTLIST),
-                    'spyder_io_dcm': get_package_data('spyder_io_dcm', EXTLIST),
-                    'spyder_io_hdf5': get_package_data('spyder_io_hdf5', EXTLIST),
+                    'trex_breakpoints': get_package_data('trex_breakpoints', EXTLIST),
+                    'trex_profiler': get_package_data('trex_profiler', EXTLIST),
+                    'trex_pylint': get_package_data('trex_pylint', EXTLIST),
+                    'trex_io_dcm': get_package_data('trex_io_dcm', EXTLIST),
+                    'trex_io_hdf5': get_package_data('trex_io_hdf5', EXTLIST),
                     },
       scripts=[osp.join('scripts', fname) for fname in SCRIPTS],
       data_files=get_data_files(),
@@ -311,8 +311,8 @@ if 'setuptools' in sys.modules:
 
     setup_args['entry_points'] = {
         'gui_scripts': [
-            '{} = spyder.app.start:main'.format(
-                'spyder3' if PY3 else 'spyder')
+            '{} = trex.app.start:main'.format(
+                'trex3' if PY3 else 'trex')
         ]
     }
 

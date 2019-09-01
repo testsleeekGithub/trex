@@ -15,7 +15,7 @@ Many command windows may be created in the **Console**:
 * System command window (this terminal emulation window has quite limited 
   features compared to a real terminal: it may be useful on Windows 
   platforms where the system terminal is not much more powerful - on the 
-  contrary, on GNU/Linux, a real system terminal is opened, outside Spyder)
+  contrary, on GNU/Linux, a real system terminal is opened, outside TRex)
 
 Python-based command windows support the following features:
 

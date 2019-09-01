@@ -1,7 +1,7 @@
 Installation
 ============
 
-Spyder is quite easy to install on Windows, Linux and MacOS X. Just the read the
+TRex is quite easy to install on Windows, Linux and MacOS X. Just the read the
 following instructions with care.
 
 Installing on Windows Vista/7/8/10
@@ -10,7 +10,7 @@ Installing on Windows Vista/7/8/10
 The easy way
 ~~~~~~~~~~~~
 
-Spyder is already included in these *Python Scientific Distributions*:
+TRex is already included in these *Python Scientific Distributions*:
 
 #. `Anaconda <http://continuum.io/downloads.html>`_
 #. `WinPython <https://winpython.github.io/>`_
@@ -23,7 +23,7 @@ to install one!).
 The hard way
 ~~~~~~~~~~~~
 
-If you want to install Spyder directly, you need to follow these steps:
+If you want to install TRex directly, you need to follow these steps:
 
 #. Install the essential requirements:
 
@@ -31,26 +31,26 @@ If you want to install Spyder directly, you need to follow these steps:
    * `PyQt5 <http://www.riverbankcomputing.co.uk/software/pyqt/download5>`_ (recommended)
      or `PyQt4 <http://www.riverbankcomputing.co.uk/software/pyqt/download>`_
 
-#. Install Spyder and its dependencies by running this command::
+#. Install TRex and its dependencies by running this command::
 
-       pip install spyder
+       pip install trex
 
 
-Updating Spyder
+Updating TRex
 ~~~~~~~~~~~~~~~
 
-You can update Spyder by:
+You can update TRex by:
 
 * Updating Anaconda, WinPython or Python(x,y).
 
 * Or using this command (in case you *don't* use any of those scientific
   distributions)::
 
-        pip install --upgrade spyder
+        pip install --upgrade trex
 
   .. note::
 
-     This command will also update all Spyder dependencies
+     This command will also update all TRex dependencies
 
 |
 
@@ -60,31 +60,31 @@ Installing on MacOS X
 The easy way
 ~~~~~~~~~~~~
 
-Thanks to the Spyder team and `Continuum <http://www.continuum.io/>`_, you have
+Thanks to the TRex team and `Continuum <http://www.continuum.io/>`_, you have
 two alternatives:
 
 #. Use the `Anaconda <http://continuum.io/downloads.html>`_ Python distribution.
 
 #. Use our DMG installers, which can be found
-   `here <https://github.com/spyder-ide/spyder/releases>`_.
+   `here <https://github.com/trex-ide/trex/releases>`_.
 
   .. note::
      
      The minimal version to run our DMG's is Mavericks (10.9) since
-     Spyder 2.3.5. Previous versions work on Lion (10.7) or higher.
+     TRex 2.3.5. Previous versions work on Lion (10.7) or higher.
 
 
 The hard way
 ~~~~~~~~~~~~
 
-Thanks to the *MacPorts* project, Spyder can be installed using its ``port`` package manager.
+Thanks to the *MacPorts* project, TRex can be installed using its ``port`` package manager.
 There are `several versions`__ available from which you can choose from.
 
-__ http://www.macports.org/ports.php?by=name&substr=spyder
+__ http://www.macports.org/ports.php?by=name&substr=trex
 
   .. warning::
 
-     It is known that the MacPorts version of Spyder is raising this error:
+     It is known that the MacPorts version of TRex is raising this error:
      ``ValueError: unknown locale: UTF-8``, which doesn't let it start correctly.
    
      To fix it you will have to set these environment variables in your
@@ -103,7 +103,7 @@ might need.
 
 #. **Ubuntu**:
 
-   * Using the official package manager: ``sudo apt-get install spyder``.
+   * Using the official package manager: ``sudo apt-get install trex``.
 
      .. note::
 
@@ -112,31 +112,31 @@ might need.
 
    * Using the `pip <https://pypi.python.org/pypi/pip/>`_ package manager:
 
-     * Installing: ``sudo pip install spyder``
-     * Updating: ``sudo pip install -U spyder``
+     * Installing: ``sudo pip install trex``
+     * Updating: ``sudo pip install -U trex``
 
 #. **Debian Unstable**:
   
-   Using the package manager: ``sudo apt-get install spyder``
+   Using the package manager: ``sudo apt-get install trex``
 
-   The Spyder's official Debian package is available `here`__ 
+   The TRex's official Debian package is available `here`__
   
-   __ http://packages.debian.org/fr/sid/spyder.
+   __ http://packages.debian.org/fr/sid/trex.
 
 
 #. **Other Distributions**
 
-   Spyder is also available in other GNU/Linux distributions, like
+   TRex is also available in other GNU/Linux distributions, like
 
-   * `Archlinux <https://aur.archlinux.org/packages/?K=spyder>`_
+   * `Archlinux <https://aur.archlinux.org/packages/?K=trex>`_
 
-   * `Fedora <https://admin.fedoraproject.org/pkgdb/acls/name/spyder?_csrf_token=ab2ac812ed6df3abdf42981038a56d3d87b34128>`_
+   * `Fedora <https://admin.fedoraproject.org/pkgdb/acls/name/trex?_csrf_token=ab2ac812ed6df3abdf42981038a56d3d87b34128>`_
 
-   * `Gentoo <http://packages.gentoo.org/package/dev-python/spyder>`_
+   * `Gentoo <http://packages.gentoo.org/package/dev-python/trex>`_
 
-   * `openSUSE <https://build.opensuse.org/package/show?package=python-spyder&project=home%3Aocefpaf>`_
+   * `openSUSE <https://build.opensuse.org/package/show?package=python-trex&project=home%3Aocefpaf>`_
 
-   * `Mageia <http://mageia.madb.org/package/show/name/spyder>`_
+   * `Mageia <http://mageia.madb.org/package/show/name/trex>`_
 
    Please refer to your distribution's documentation to learn how to install it
    there.
@@ -149,7 +149,7 @@ Installing or running directly from source
 Requirements
 ~~~~~~~~~~~~
 
-The requirements to run Spyder are:
+The requirements to run TRex are:
 
 * `Python <http://www.python.org/>`_ 2.7 or >=3.3
 
@@ -183,7 +183,7 @@ The requirements to run Spyder are:
 * `Nbconvert <http://nbconvert.readthedocs.org/>`_ -- to manipulate Jupyter notebooks
   on the Editor.
 
-* `Qtawesome <https://github.com/spyder-ide/qtawesome>`_ >=0.4.1 -- for an icon theme based on
+* `Qtawesome <https://github.com/trex-ide/qtawesome>`_ >=0.4.1 -- for an icon theme based on
   FontAwesome.
 
 * Pickleshare -- To show import completions on the Editor and Consoles.
@@ -191,7 +191,7 @@ The requirements to run Spyder are:
 * `PyZMQ <https://github.com/zeromq/pyzmq>`_ -- To run introspection services on the
   Editor asynchronously.
 
-* `QtPy <https://github.com/spyder-ide/qtpy>`_ >=1.1.0 -- To run Spyder with PyQt4 or
+* `QtPy <https://github.com/trex-ide/qtpy>`_ >=1.1.0 -- To run TRex with PyQt4 or
   PyQt5 seamlessly.
 
 * `Chardet <https://github.com/chardet/chardet>`_ >=2.0.0-- Character encoding auto-detection
@@ -222,43 +222,43 @@ Optional modules
 Installation procedure
 ~~~~~~~~~~~~~~~~~~~~~~
 
-1. If you use Anaconda, you need to run this command to install Spyder:
+1. If you use Anaconda, you need to run this command to install TRex:
 
-   ``conda install spyder``
+   ``conda install trex``
 
 2. If you don't use Anaconda, you need to run:
 
-   ``pip install --upgrade spyder``
+   ``pip install --upgrade trex``
 
 
 Run without installing
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You can execute Spyder without installing it first by following these steps:
+You can execute TRex without installing it first by following these steps:
 
 #. Unzip the source package
 #. Change current directory to the unzipped directory
-#. Run Spyder with the command ``python bootstrap.py``
+#. Run TRex with the command ``python bootstrap.py``
 #. (*Optional*) Build the documentation with ``python setup.py build_doc``.
 
 This is especially useful for beta-testing, troubleshooting and development 
-of Spyder itself.
+of TRex itself.
 
 |
 
 Installing the development version
 ----------------------------------
 
-If you want to try the next Spyder version, you have to:
+If you want to try the next TRex version, you have to:
 
-#. Install Spyder `requirements`_
+#. Install TRex `requirements`_
 
 #. Install `Git <http://git-scm.com/downloads>`_, a powerful
    source control management tool.
 
-#. Clone the Spyder source code repository with the command:
+#. Clone the TRex source code repository with the command:
 
-   ``git clone https://github.com/spyder-ide/spyder.git``
+   ``git clone https://github.com/trex-ide/trex.git``
 
 #. To keep your repository up-to-date, run
 
@@ -276,9 +276,9 @@ If you want to try the next Spyder version, you have to:
 Help and support
 ----------------
 
-Spyder websites:
+TRex websites:
 
 * For bug reports and feature requests you can go to our
-  `website <https://github.com/spyder-ide/spyder/issues>`_.
+  `website <https://github.com/trex-ide/trex/issues>`_.
 * For discussions and help requests, you can suscribe to our
-  `Google Group <http://groups.google.com/group/spyderlib>`_.
+  `Google Group <http://groups.google.com/group/trexlib>`_.

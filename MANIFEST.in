@@ -1,14 +1,14 @@
-recursive-include spyder *.pot *.po *.svg *.png *.css *.qss *.c, *.cpp, *.html, *.java, *.md, *.R, *.csv, *.ipynb
-recursive-include spyder_breakpoints *.pot *.po *.svg *.png
-recursive-include spyder_profiler *.pot *.po *.svg *.png
-recursive-include spyder_pylint *.pot *.po *.svg *.png
+recursive-include trex *.pot *.po *.svg *.png *.css *.qss *.c, *.cpp, *.html, *.java, *.md, *.R, *.csv, *.ipynb
+recursive-include trex_breakpoints *.pot *.po *.svg *.png
+recursive-include trex_profiler *.pot *.po *.svg *.png
+recursive-include trex_pylint *.pot *.po *.svg *.png
 recursive-include doc *.py *.rst *.png *.ico *.
-include spyder/fonts/spyder.ttf
-include spyder/fonts/spyder-charmap.json
+include trex/fonts/trex.ttf
+include trex/fonts/trex-charmap.json
 include scripts/*
 include img_src/*.ico
-include img_src/spyder.png
-include img_src/spyder3.png
+include img_src/trex.png
+include img_src/trex3.png
 include MANIFEST.in
 include README.md
 include LICENSE

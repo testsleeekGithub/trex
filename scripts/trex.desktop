@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TRex
+GenericName=TRex
+Comment=Scientific PYthon Development EnviRonment
+TryExec=trex
+Exec=trex %F
+Categories=Development;Science;IDE;Qt;
+Icon=trex
+Terminal=false
+StartupNotify=true
+MimeType=text/x-python;
+X-AppStream-Ignore=True

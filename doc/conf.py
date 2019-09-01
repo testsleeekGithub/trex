@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Spyder documentation build configuration file, created by
+# TRex documentation build configuration file, created by
 # sphinx-quickstart on Fri Jul 10 16:32:25 2009.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -37,8 +37,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Spyder'
-copyright = 'The Spyder Project Contributors'
+project = 'TRex'
+copyright = 'The TRex Project Contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -111,7 +111,7 @@ html_theme = 'sphinxdoc'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = 'spyder_bbg.png'
+html_logo = 'trex_bbg.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -159,7 +159,7 @@ html_static_path = ['_static']
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Spyderdoc'
+htmlhelp_basename = 'TRexdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -173,7 +173,7 @@ htmlhelp_basename = 'Spyderdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Spyder.tex', 'Spyder Documentation', 'Pierre Raybaut', 'manual'),
+  ('index', 'TRex.tex', 'TRex Documentation', 'Pierre Raybaut', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

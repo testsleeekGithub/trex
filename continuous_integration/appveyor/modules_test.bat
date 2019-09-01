@@ -2,7 +2,7 @@ setlocal enableextensions enabledelayedexpansion
 
 @echo off
 
-set SPYDER=%APPVEYOR_BUILD_FOLDER%\spyder
+set TREX=%APPVEYOR_BUILD_FOLDER%\trex
 set TEST_CI_WIDGETS=True
 
 :: These tests are failing intermittently in Python 2.
@@ -11,11 +11,11 @@ if %PYTHON_VERSION%==2.7 (
     exit 0
 )
 
-:: Spyder
-for /r "%SPYDER%" %%f in (*.py) do (
+:: TRex
+for /r "%TREX%" %%f in (*.py) do (
     set file=%%f
 
-    if "%%f"=="%SPYDER%\pyplot.py" (
+    if "%%f"=="%TREX%\pyplot.py" (
         echo --- NOT testing %%f ---
         echo.
     ) else if not "!file:app\=!"=="!file!" (
@@ -42,10 +42,10 @@ for /r "%SPYDER%" %%f in (*.py) do (
         :: We can't test these files outside of our IPython console
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\utils\qthelpers.py" (
+    ) else if "%%f"=="%TREX%\utils\qthelpers.py" (
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\widgets\formlayout.py" (
+    ) else if "%%f"=="%TREX%\widgets\formlayout.py" (
         echo --- NOT testing %%f ---
         echo.
     ) else if not "!file:external\=!"=="!file!" (
@@ -57,34 +57,34 @@ for /r "%SPYDER%" %%f in (*.py) do (
     ) else if not "!file:utils\help=!"=="!file!" (
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\utils\bsdsocket.py" (
+    ) else if "%%f"=="%TREX%\utils\bsdsocket.py" (
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%spyder%\utils\inputhooks.py" (
+    ) else if "%%f"=="%trex%\utils\inputhooks.py" (
         :: It can't be tested outside of a Python console
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\utils\introspection\module_completion.py" (
+    ) else if "%%f"=="%TREX%\utils\introspection\module_completion.py" (
         :: This is failing randomly
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\utils\introspection\plugin_client.py" (
+    ) else if "%%f"=="%TREX%\utils\introspection\plugin_client.py" (
         :: We have to investigate this failure!
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\widgets\editor.py" (
+    ) else if "%%f"=="%TREX%\widgets\editor.py" (
         :: This is making AppVeyor to time out!
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%spyder%\widgets\externalshell\systemshell.py" (
+    ) else if "%%f"=="%trex%\widgets\externalshell\systemshell.py" (
         :: This is failing randomly
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%spyder%\widgets\ipythonconsole\__init__.py" (
+    ) else if "%%f"=="%trex%\widgets\ipythonconsole\__init__.py" (
         :: This is failing randomly
         echo --- NOT testing %%f ---
         echo.
-    ) else if "%%f"=="%SPYDER%\widgets\sourcecode\codeeditor.py" (
+    ) else if "%%f"=="%TREX%\widgets\sourcecode\codeeditor.py" (
         :: Testing file crashes on Python 2.7 without any reason
         if %PYTHON_VERSION%==2.7 (
             echo --- NOT testing %%f ---
@@ -102,7 +102,7 @@ for /r "%SPYDER%" %%f in (*.py) do (
 )
 
 :: Third-party plugins
-for /r "%APPVEYOR_BUILD_FOLDER%\spyder_breakpoints" %%f in (*.py) do (
+for /r "%APPVEYOR_BUILD_FOLDER%\trex_breakpoints" %%f in (*.py) do (
     set file=%%f
     if not "!file:widgets\=!"=="!file!" (
         echo --- Testing %%f ---
@@ -111,7 +111,7 @@ for /r "%APPVEYOR_BUILD_FOLDER%\spyder_breakpoints" %%f in (*.py) do (
     )
 )
 
-for /r "%APPVEYOR_BUILD_FOLDER%\spyder_profiler" %%f in (*.py) do (
+for /r "%APPVEYOR_BUILD_FOLDER%\trex_profiler" %%f in (*.py) do (
     set file=%%f
     if not "!file:widgets\=!"=="!file!" (
         echo --- Testing %%f ---
@@ -120,7 +120,7 @@ for /r "%APPVEYOR_BUILD_FOLDER%\spyder_profiler" %%f in (*.py) do (
     )
 )
 
-for /r "%APPVEYOR_BUILD_FOLDER%\spyder_pylint" %%f in (*.py) do (
+for /r "%APPVEYOR_BUILD_FOLDER%\trex_pylint" %%f in (*.py) do (
     set file=%%f
     if not "!file:widgets\=!"=="!file!" (
         echo --- Testing %%f ---

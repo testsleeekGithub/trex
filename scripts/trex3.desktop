@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TRex3
+GenericName=TRex3
+Comment=Scientific PYthon Development EnviRonment - Python3
+TryExec=trex3
+Exec=trex3 %F
+Categories=Development;Science;IDE;Qt;
+Icon=trex3
+Terminal=false
+StartupNotify=true
+MimeType=text/x-python;
