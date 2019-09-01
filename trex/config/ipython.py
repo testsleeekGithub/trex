@@ -40,4 +40,4 @@ def is_qtconsole_installed():
 
 
 # Main check for IPython presence
-QTCONSOLE_INSTALLED = is_qtconsole_installed()
+QTCONSOLE_INSTALLED = False
