@@ -17,7 +17,6 @@ from qtpy import PYQT5
 from qtpy.QtCore import Qt, QTimer
 from qtpy.QtWidgets import QApplication
 
-from trex.py3compat import PY2
 from trex.plugins.ipythonconsole import (IPythonConsole,
                                            KernelConnectionDialog)
 from trex.utils.test import close_message_box
@@ -110,7 +109,7 @@ def test_run_doctest(ipyconsole, qtbot):
 
 
 @flaky(max_runs=10)
-@pytest.mark.skipif(os.name == 'nt' or (PY2 and PYQT5),
+@pytest.mark.skipif(os.name == 'nt',
                     reason="It times out frequently")
 def test_mpl_backend_change(ipyconsole, qtbot):
     """

@@ -9,7 +9,7 @@
 # pylint: disable=C0103
 
 # Standard library imports
-from __future__ import print_function
+
 
 import os.path as osp
 import shutil

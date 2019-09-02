@@ -12,7 +12,7 @@
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import with_statement
+
 import fnmatch
 import os
 import os.path as osp

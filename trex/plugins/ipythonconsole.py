@@ -49,7 +49,7 @@ from trex.config.base import (_, DEV, get_home_dir, get_module_path,
 from trex.config.main import CONF
 from trex.plugins import TRexPluginWidget
 from trex.plugins.configdialog import PluginConfigPage
-from trex.py3compat import (iteritems, PY2, to_binary_string,
+from trex.py3compat import (iteritems, to_binary_string,
                               to_text_string)
 from trex.utils.qthelpers import create_action, MENU_SEPARATOR
 from trex.utils import icon_manager as ima
@@ -371,8 +371,7 @@ class IPythonConsoleConfigPage(PluginConfigPage):
         if sys.platform.startswith('linux'):
             backends.append( ("Gtk3", 5) )
             backends.append( ("Gtk", 6) )
-        if PY2:
-            backends.append( ("Wx", 7) )
+
         backends.append( ("Tkinter", 8) )
         backends = tuple(backends)
         
@@ -1294,16 +1293,6 @@ class IPythonConsole(TRexPluginWidget):
         # Environment variables that we need to pass to our sitecustomize
         umr_namelist = CONF.get('main_interpreter', 'umr/namelist')
 
-        if PY2:
-            original_list = umr_namelist[:]
-            for umr_n in umr_namelist:
-                try:
-                    umr_n.encode('utf-8')
-                except UnicodeDecodeError:
-                    umr_namelist.remove(umr_n)
-            if original_list != umr_namelist:
-                CONF.set('main_interpreter', 'umr/namelist', umr_namelist)
-
         env_vars = {
             'IPYTHON_KERNEL': 'True',
             'EXTERNAL_INTERPRETER': not default_interpreter,
@@ -1317,11 +1306,7 @@ class IPythonConsole(TRexPluginWidget):
 
         # Making all env_vars strings
         for k,v in iteritems(env_vars):
-            if PY2:
-                uv = to_text_string(v)
-                env_vars[k] = to_binary_string(uv, encoding='utf-8')
-            else:
-                env_vars[k] = to_text_string(v)
+            env_vars[k] = to_text_string(v)
 
         # Dict for our kernel spec
         kernel_dict = {

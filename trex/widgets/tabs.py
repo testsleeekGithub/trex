@@ -24,7 +24,7 @@ from qtpy.QtWidgets import (QApplication, QHBoxLayout, QMenu, QTabBar,
 # Local imports
 from trex.config.base import _
 from trex.config.gui import config_shortcut
-from trex.py3compat import PY2, to_text_string
+from trex.py3compat import to_text_string
 from trex.utils import icon_manager as ima
 from trex.utils.misc import get_common_path
 from trex.utils.qthelpers import (add_actions, create_action,
@@ -62,14 +62,9 @@ class TabBar(QTabBar):
             drag = QDrag(self)
             mimeData = QMimeData()
             # Converting id's to long to avoid an OverflowError with PySide
-            if PY2:
-                ancestor_id = long(id(self.ancestor))
-                parent_widget_id = long(id(self.parentWidget()))
-                self_id = long(id(self))
-            else:
-                ancestor_id = id(self.ancestor)
-                parent_widget_id = id(self.parentWidget())
-                self_id = id(self)
+            ancestor_id = id(self.ancestor)
+            parent_widget_id = id(self.parentWidget())
+            self_id = id(self)
             mimeData.setData("parent-id", QByteArray.number(ancestor_id))
             mimeData.setData("tabwidget-id",
                              QByteArray.number(parent_widget_id))

@@ -9,7 +9,7 @@ Text data Importing Wizard based on Qt
 """
 
 # Standard library imports
-from __future__ import print_function
+
 from functools import partial as ft_partial
 
 # Third party imports

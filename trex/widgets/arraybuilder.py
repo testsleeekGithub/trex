@@ -14,7 +14,6 @@ Numpy Matrix/Array Builder Widget.
 # -Use the same font as editor/console?
 
 # Standard library imports
-from __future__ import division
 import re
 
 # Third party imports

@@ -19,7 +19,6 @@ Licensed under the terms of the MIT License
 # =============================================================================
 # Stdlib imports
 # =============================================================================
-from __future__ import print_function
 
 import atexit
 import errno
@@ -148,7 +147,7 @@ from trex.app.cli_options import get_options
 from trex import dependencies
 from trex.config.ipython import QTCONSOLE_INSTALLED
 from trex.py3compat import (getcwd, is_text_string, to_text_string,
-                              PY3, qbytearray_to_str, configparser as cp)
+                              qbytearray_to_str, configparser as cp)
 from trex.utils import encoding, programs
 from trex.utils import icon_manager as ima
 from trex.utils.introspection import module_completion
@@ -2312,10 +2311,8 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def report_issue(self):
-        if PY3:
-            from urllib.parse import quote
-        else:
-            from urllib import quote     # analysis:ignore
+        from urllib.parse import quote
+
         versions = get_versions()
         # Get git revision for development version
         revision = ''

@@ -17,7 +17,7 @@ import traceback
 # Local import
 from trex.config.base import _, DEBUG
 from trex.utils import programs, encoding
-from trex.py3compat import to_text_string, to_binary_string, PY3
+from trex.py3compat import to_text_string, to_binary_string
 from trex import dependencies
 DEBUG_EDITOR = DEBUG >= 3
 
@@ -87,7 +87,7 @@ def check_with_pyflakes(source_code, filename=None):
 
 # Required version:
 # Why 0.5 (Python2)? Because it's based on _ast (thread-safe)
-PYFLAKES_REQVER = '>=0.6.0' if PY3 else '>=0.5.0'
+PYFLAKES_REQVER = '>=0.6.0'
 dependencies.add("pyflakes", _("Real-time code analysis on the Editor"),
                  required_version=PYFLAKES_REQVER)
 

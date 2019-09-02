@@ -29,7 +29,7 @@ import numpy as np
 from trex.config.base import _
 from trex.config.fonts import DEFAULT_SMALL_DELTA
 from trex.config.gui import get_font, config_shortcut
-from trex.py3compat import (io, is_text_string, PY2, to_text_string,
+from trex.py3compat import (io, is_text_string, to_text_string,
                               TEXT_TYPES)
 from trex.utils import encoding
 from trex.utils import icon_manager as ima
@@ -189,31 +189,16 @@ class DataFrameModel(QAbstractTableModel):
         if orientation == Qt.Horizontal:
             if section == 0:
                 return 'Index'
-            elif section == 1 and PY2:
-                # Get rid of possible BOM utf-8 data present at the
-                # beginning of a file, which gets attached to the first
-                # column header when headers are present in the first
-                # row.
-                # Fixes Issue 2514
-                try:
-                    header = to_text_string(self.df_header[0],
-                                            encoding='utf-8-sig')
-                except:
-                    header = to_text_string(self.df_header[0])
-                return to_qvariant(header)
-            elif isinstance(self.df_header[section-1], TEXT_TYPES):
+            if isinstance(self.df_header[section-1], TEXT_TYPES):
                 # Get the proper encoding of the text in the header.
                 # Fixes Issue 3896
-                if not PY2:
-                    try:
-                        header = self.df_header[section-1].encode('utf-8')
-                        coding = 'utf-8-sig'
-                    except:
-                        header = self.df_header[section-1].encode('utf-8')
-                        coding = encoding.get_coding(header)
-                else:
-                    header = self.df_header[section-1]
+                try:
+                    header = self.df_header[section-1].encode('utf-8')
+                    coding = 'utf-8-sig'
+                except:
+                    header = self.df_header[section-1].encode('utf-8')
                     coding = encoding.get_coding(header)
+
                 return to_qvariant(to_text_string(header, encoding=coding))
             else:
                 return to_qvariant(to_text_string(self.df_header[section-1]))
@@ -623,10 +608,9 @@ class DataFrameView(QTableView):
             obj = df.iloc[slice(row_min, row_max+1), slice(col_min-1, col_max)]
             output = io.StringIO()
             obj.to_csv(output, sep='\t', index=index, header=header)
-            if not PY2:
-                contents = output.getvalue()
-            else:
-                contents = output.getvalue().decode('utf-8')
+
+            contents = output.getvalue()
+
             output.close()
         clipboard = QApplication.clipboard()
         clipboard.setText(contents)

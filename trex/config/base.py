@@ -12,8 +12,6 @@ This file only deals with non-GUI configuration features
 sip API incompatibility issue in trex's non-gui modules)
 """
 
-from __future__ import print_function
-
 import codecs
 import locale
 import os.path as osp
@@ -23,7 +21,7 @@ import sys
 
 # Local imports
 from trex.utils import encoding
-from trex.py3compat import (is_unicode, TEXT_TYPES, INT_TYPES, PY3,
+from trex.py3compat import (is_unicode, TEXT_TYPES, INT_TYPES,
                               to_text_string, is_text_string)
 
 
@@ -48,7 +46,7 @@ PYTEST = os.environ.get('TREX_PYTEST')
 # Debug helpers
 #==============================================================================
 # This is needed after restarting and using debug_print
-STDOUT = sys.stdout if PY3 else codecs.getwriter('utf-8')(sys.stdout)
+STDOUT = sys.stdout
 STDERR = sys.stderr
 def _get_debug_env():
     debug_env = os.environ.get('TREX_DEBUG', '')
@@ -61,36 +59,22 @@ def debug_print(*message):
     """Output debug messages to stdout"""
     if DEBUG:
         ss = STDOUT
-        if PY3:
-            # This is needed after restarting and using debug_print
-            for m in message:
-                ss.buffer.write(str(m).encode('utf-8'))
-            print('', file=ss)
-        else:
-            print(*message, file=ss)
+
+        # This is needed after restarting and using debug_print
+        for m in message:
+            ss.buffer.write(str(m).encode('utf-8'))
+        print('', file=ss)
+
 
 
 #==============================================================================
 # Configuration paths
 #==============================================================================
 # TRex settings dir
-# NOTE: During the 2.x.x series this dir was named .trex2, but
-# since 3.0+ we've reverted back to use .trex to simplify major
-# updates in version (required when we change APIs by Linux
-# packagers)
 if sys.platform.startswith('linux'):
-    SUBFOLDER = 'trex'
+    SUBFOLDER = 'trex-py3'
 else:
-    SUBFOLDER = '.trex'
-
-
-# We can't have PY2 and PY3 settings in the same dir because:
-# 1. This leads to ugly crashes and freezes (e.g. by trying to
-#    embed a PY2 interpreter in PY3)
-# 2. We need to save the list of installed modules (for code
-#    completion) separately for each version
-if PY3:
-    SUBFOLDER = SUBFOLDER + '-py3'
+    SUBFOLDER = '.trex-py3'
 
 
 def get_home_dir():
@@ -345,10 +329,9 @@ def get_translation(modname, dirname=None):
         _trans = gettext.translation(modname, locale_path, codeset="utf-8")
         lgettext = _trans.lgettext
         def translate_gettext(x):
-            if not PY3 and is_unicode(x):
-                x = x.encode("utf-8")
+
             y = lgettext(x)
-            if is_text_string(y) and PY3:
+            if is_text_string(y):
                 return y
             else:
                 return to_text_string(y, "utf-8")
@@ -415,10 +398,8 @@ EXCLUDED_NAMES = ['nan', 'inf', 'infty', 'little_endian', 'colorbar_doc',
 #==============================================================================
 # Mac application utilities
 #==============================================================================
-if PY3:
-    MAC_APP_NAME = 'TRex.app'
-else:
-    MAC_APP_NAME = 'TRex-Py2.app'
+MAC_APP_NAME = 'TRex.app'
+
 
 def running_in_mac_app():
     if sys.platform == "darwin" and MAC_APP_NAME in __file__:

@@ -9,7 +9,7 @@ Generic object editor dialog
 """
 
 # Standard library imports
-from __future__ import print_function
+
 
 # Third party imports
 from qtpy.QtCore import QObject

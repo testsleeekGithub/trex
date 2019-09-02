@@ -19,8 +19,6 @@ import traceback
 import shlex
 
 
-PY2 = sys.version[0] == '2'
-
 
 #==============================================================================
 # sys.argv can be missing when Python is embedded, taking care of it.
@@ -49,17 +47,9 @@ def _print(*objects, **options):
     file = options.get('file', sys.stdout)
     sep = options.get('sep', ' ')
     string = sep.join([str(obj) for obj in objects])
-    if not PY2:
-        # Python 3
-        local_dict = {}
-        exec('printf = print', local_dict) # to avoid syntax error in Python 2
-        local_dict['printf'](string, file=file, end=end, sep=sep)
-    else:
-        # Python 2
-        if end:
-            print >>file, string
-        else:
-            print >>file, string,
+    local_dict = {}
+    exec('printf = print', local_dict) # to avoid syntax error in Python 2
+    local_dict['printf'](string, file=file, end=end, sep=sep)
 
 
 #==============================================================================
@@ -157,19 +147,6 @@ os.environ['TREX_PARENT_DIR'] = trex_path
 # Setting console encoding (otherwise Python does not recognize encoding)
 # for Windows platforms
 #==============================================================================
-if os.name == 'nt' and PY2:
-    try:
-        import locale, ctypes
-        _t, _cp = locale.getdefaultlocale('LANG')
-        try:
-            _cp = int(_cp[2:])
-            ctypes.windll.kernel32.SetConsoleCP(_cp)
-            ctypes.windll.kernel32.SetConsoleOutputCP(_cp)
-        except (ValueError, TypeError):
-            # Code page number in locale is not valid
-            pass
-    except ImportError:
-        pass
 
 
 #==============================================================================
@@ -208,15 +185,6 @@ except ImportError:
     pass
 
 
-#==============================================================================
-# Add default filesystem encoding on Linux to avoid an error with
-# Matplotlib 1.5 in Python 2 (Fixes Issue 2793)
-#==============================================================================
-if PY2 and sys.platform.startswith('linux'):
-    def _getfilesystemencoding_wrapper():
-        return 'utf-8'
-
-    sys.getfilesystemencoding = _getfilesystemencoding_wrapper
 
 
 #==============================================================================
@@ -539,11 +507,7 @@ class TRexPdb(pdb.Pdb):
         if not frame:
             return
         fname = self.canonic(frame.f_code.co_filename)
-        if PY2:
-            try:
-                fname = unicode(fname, "utf-8")
-            except TypeError:
-                pass
+
         lineno = frame.f_lineno
         if isinstance(fname, basestring) and isinstance(lineno, int):
             if osp.isfile(fname):
@@ -643,38 +607,6 @@ def reset(self):
 def postcmd(self, stop, line):
     self.notify_trex(self.curframe)
     return self._old_Pdb_postcmd(stop, line)
-
-
-# Breakpoints don't work for files with non-ascii chars in Python 2
-# Fixes Issue 1484
-if PY2:
-    @monkeypatch_method(pdb.Pdb, 'Pdb')
-    def break_here(self, frame):
-        from bdb import effective
-        filename = self.canonic(frame.f_code.co_filename)
-        try:
-            filename = unicode(filename, "utf-8")
-        except TypeError:
-            pass
-        if not filename in self.breaks:
-            return False
-        lineno = frame.f_lineno
-        if not lineno in self.breaks[filename]:
-            # The line itself has no breakpoint, but maybe the line is the
-            # first line of a function with breakpoint set by function name.
-            lineno = frame.f_code.co_firstlineno
-            if not lineno in self.breaks[filename]:
-                return False
-
-        # flag says ok to delete temp. bp
-        (bp, flag) = effective(filename, lineno, frame)
-        if bp:
-            self.currentbp = bp.number
-            if (flag and bp.temporary):
-                self.do_clear(str(bp.number))
-            return True
-        else:
-            return False
 
 
 #==============================================================================

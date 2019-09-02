@@ -29,7 +29,7 @@ from qtpy.QtWidgets import (QAbstractItemView, QApplication, QListWidget,
 # Local imports
 from trex.config.gui import get_font
 from trex.config.main import CONF
-from trex.py3compat import PY3, str_lower, to_text_string
+from trex.py3compat import str_lower, to_text_string
 from trex.utils import icon_manager as ima
 from trex.widgets.calltip import CallTipWidget
 from trex.widgets.mixins import BaseEditMixin
@@ -528,7 +528,7 @@ class TextEditBaseWidget(QPlainTextEdit, BaseEditMixin):
         # corruptions when saving files with certain combinations
         # of unicode chars on them (like the one attached on
         # Issue 1546)
-        if os.name == 'nt' and PY3:
+        if os.name == 'nt':
             text = self.get_text('sof', 'eof')
             return text.replace('\u2028', '\n').replace('\u2029', '\n')\
                        .replace('\u0085', '\n')

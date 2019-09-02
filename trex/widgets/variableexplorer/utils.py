@@ -8,15 +8,14 @@
 Utilities for the Collections editor widget and dialog
 """
 
-from __future__ import print_function
+
 
 import re
 
 # Local imports
 from trex.config.base import get_supported_types
 from trex.py3compat import (NUMERIC_TYPES, TEXT_TYPES, to_text_string,
-                              is_text_string, is_binary_string, reprlib,
-                              PY2, to_binary_string)
+                              is_text_string, is_binary_string, reprlib, to_binary_string)
 from trex.utils import programs
 from trex import dependencies
 from trex.config.base import _
@@ -281,19 +280,7 @@ def value_to_display(value, minmax=False):
             display = '%s  Mode: %s' % (address(value), value.mode)
         elif isinstance(value, DataFrame):
             cols = value.columns
-            if PY2 and len(cols) > 0:
-                # Get rid of possible BOM utf-8 data present at the
-                # beginning of a file, which gets attached to the first
-                # column header when headers are present in the first
-                # row.
-                # Fixes Issue 2514
-                try:
-                    ini_col = to_text_string(cols[0], encoding='utf-8-sig')
-                except:
-                    ini_col = to_text_string(cols[0])
-                cols = [ini_col] + [to_text_string(c) for c in cols[1:]]
-            else:
-                cols = [to_text_string(c) for c in cols]
+            cols = [to_text_string(c) for c in cols]
             display = 'Column names: ' + ', '.join(list(cols))
         elif isinstance(value, NavigableString):
             # Fixes Issue 2448

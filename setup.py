@@ -11,8 +11,6 @@ TRex
 The Scientific PYthon Development EnviRonment
 """
 
-from __future__ import print_function
-
 import os
 import os.path as osp
 import subprocess
@@ -25,18 +23,13 @@ from distutils.command.install import install
 from distutils.command.install_data import install_data
 
 
-#==============================================================================
-# Check for Python 3
-#==============================================================================
-PY3 = sys.version_info[0] == 3
-
 
 #==============================================================================
 # Minimal Python version sanity check
 # Taken from the notebook setup.py -- Modified BSD License
 #==============================================================================
 v = sys.version_info
-if v[:2] < (2,7) or (v[0] >= 3 and v[:2] < (3,3)):
+if v[:2] < (2, 7) or (v[0] >= 3 and v[:2] < (3, 3)):
     error = "ERROR: TRex requires Python version 2.7 or 3.3 or above."
     print(error, file=sys.stderr)
     sys.exit(1)
@@ -57,7 +50,7 @@ def get_package_data(name, extlist):
     """Return data files for package *name* with extensions in *extlist*"""
     flist = []
     # Workaround to replace os.path.relpath (not available until Python 2.6):
-    offset = len(name)+len(os.pathsep)
+    offset = len(name) + len(os.pathsep)
     for dirpath, _dirnames, filenames in os.walk(name):
         for fname in filenames:
             if not fname.startswith('.') and osp.splitext(fname)[1] in extlist:
@@ -77,13 +70,10 @@ def get_subpackages(name):
 def get_data_files():
     """Return data_files in a platform dependent manner"""
     if sys.platform.startswith('linux'):
-        if PY3:
-            data_files = [('share/applications', ['scripts/trex3.desktop']),
-                          ('share/pixmaps', ['img_src/trex3.png']),
-                          ('share/metainfo', ['scripts/trex3.appdata.xml'])]
-        else:
-            data_files = [('share/applications', ['scripts/trex.desktop']),
-                          ('share/pixmaps', ['img_src/trex.png'])]
+        data_files = [('share/applications', ['scripts/trex3.desktop']),
+                      ('share/pixmaps', ['img_src/trex3.png']),
+                      ('share/metainfo', ['scripts/trex3.appdata.xml'])]
+
     elif os.name == 'nt':
         data_files = [('scripts', ['img_src/trex.ico',
                                    'img_src/trex_reset.ico'])]
@@ -117,12 +107,11 @@ class MyInstallData(install_data):
             except:
                 print("ERROR: unable to update desktop database",
                       file=sys.stderr)
-CMDCLASS = {'install_data': MyInstallData}
+CMDCLASS = {
+    'install_data': MyInstallData
+}
 
-
-#==============================================================================
 # Sphinx build (documentation)
-#==============================================================================
 def get_html_help_exe():
     """Return HTML Help Workshop executable path (Windows only)"""
     if os.name == 'nt':
@@ -207,7 +196,7 @@ except ImportError:
 # NOTE: the '[...]_win_post_install.py' script is installed even on non-Windows
 # platforms due to a bug in pip installation process (see Issue 1158)
 SCRIPTS = ['%s_win_post_install.py' % NAME]
-if PY3 and sys.platform.startswith('linux'):
+if sys.platform.startswith('linux'):
     SCRIPTS.append('trex3')
 else:
     SCRIPTS.append('trex')
@@ -272,26 +261,19 @@ if any(arg == 'bdist_wheel' for arg in sys.argv):
     import setuptools     # analysis:ignore
 
 install_requires = [
-    'rope_py3k' if PY3 else 'rope>=0.9.4',
-    'jedi>=0.9.0',
-    'pyflakes',
-    'pygments>=2.0',
-    'qtconsole>=4.2.0',
-    'nbconvert',
     'sphinx',
     'pep8',
     'pylint',
-    'psutil',
     'qtawesome>=0.4.1',
     'qtpy>=1.1.0',
-    'pickleshare',
-    'pyzmq',
-    'chardet>=2.0.0',
     'numpydoc',
+    'pytest',
+    'cython',
+    'matplotlib',
+    'pandas',
 ]
 
 extras_require = {
-    'test:python_version == "2.7"': ['mock'],
     'test': ['pytest',
              'pytest-qt',
              'pytest-cov',
@@ -311,8 +293,7 @@ if 'setuptools' in sys.modules:
 
     setup_args['entry_points'] = {
         'gui_scripts': [
-            '{} = trex.app.start:main'.format(
-                'trex3' if PY3 else 'trex')
+            'trex3 = trex.app.start:main'
         ]
     }
 

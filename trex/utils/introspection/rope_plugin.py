@@ -13,7 +13,6 @@ import imp
 
 from trex.config.base import get_conf_path, STDERR
 from trex.utils import encoding, programs
-from trex.py3compat import PY2
 from trex.utils.dochelpers import getsignaturefromtext
 from trex.utils import sourcecode
 from trex.utils.debug import log_last_error, log_dt
@@ -89,12 +88,9 @@ class RopePlugin(IntrospectionPlugin):
           and not ';' in last_line:
             return []
 
-        if PY2:
-            filename = filename.encode('utf-8')
-        else:
-            #TODO: test if this is working without any further change in
-            # Python 3 with a user account containing unicode characters
-            pass
+        # TODO: test if this is working without any further change in
+        # Python 3 with a user account containing unicode characters
+
         try:
             resource = rope.base.libutils.path_to_resource(self.project,
                                                            filename)
@@ -124,12 +120,9 @@ class RopePlugin(IntrospectionPlugin):
         source_code = info['source_code']
         offset = info['position']
 
-        if PY2:
-            filename = filename.encode('utf-8')
-        else:
-            #TODO: test if this is working without any further change in
-            # Python 3 with a user account containing unicode characters
-            pass
+        # TODO: test if this is working without any further change in
+        # Python 3 with a user account containing unicode characters
+
         try:
             resource = rope.base.libutils.path_to_resource(self.project,
                                                            filename)
@@ -215,12 +208,9 @@ class RopePlugin(IntrospectionPlugin):
         source_code = info['source_code']
         offset = info['position']
 
-        if PY2:
-            filename = filename.encode('utf-8')
-        else:
-            #TODO: test if this is working without any further change in
-            # Python 3 with a user account containing unicode characters
-            pass
+        # TODO: test if this is working without any further change in
+        # Python 3 with a user account containing unicode characters
+
         try:
             resource = rope.base.libutils.path_to_resource(self.project,
                                                            filename)
@@ -255,12 +245,9 @@ class RopePlugin(IntrospectionPlugin):
 
     def create_rope_project(self, root_path):
         """Create a Rope project on a desired path"""
-        if PY2:
-            root_path = encoding.to_fs_from_unicode(root_path)
-        else:
-            #TODO: test if this is working without any further change in
-            # Python 3 with a user account containing unicode characters
-            pass
+        # TODO: test if this is working without any further change in
+        # Python 3 with a user account containing unicode characters
+
         try:
             import rope.base.project
             self.project = rope.base.project.Project(root_path, **ROPE_PREFS)

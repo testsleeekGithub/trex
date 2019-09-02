@@ -45,7 +45,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 # 1.0.6: code cleaning
 
 # Standard library imports
-from __future__ import print_function
+
 import datetime
 import os
 

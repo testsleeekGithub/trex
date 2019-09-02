@@ -10,7 +10,7 @@ Editor widget syntax highlighters based on QtGui.QSyntaxHighlighter
 """
 
 # Standard library imports
-from __future__ import print_function
+
 import keyword
 import os
 import re

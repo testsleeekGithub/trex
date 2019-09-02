@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 """Project creation dialog."""
 
-from __future__ import print_function
+
 
 # Standard library imports
 import errno

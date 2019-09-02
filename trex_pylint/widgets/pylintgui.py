@@ -12,7 +12,7 @@
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import print_function, with_statement
+, with_statement
 import os
 import os.path as osp
 import re
@@ -28,7 +28,7 @@ from qtpy.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QTreeWidgetItem,
 # Local imports
 from trex import dependencies
 from trex.config.base import get_conf_path, get_translation
-from trex.py3compat import getcwd, pickle, PY3, to_text_string
+from trex.py3compat import getcwd, pickle, to_text_string
 from trex.utils import icon_manager as ima
 from trex.utils import programs
 from trex.utils.encoding import to_unicode_from_fs
@@ -48,11 +48,11 @@ except KeyError as error:
 
 
 PYLINT = 'pylint'
-if PY3:
-    if programs.find_program('pylint3'):
-        PYLINT = 'pylint3'
-    elif programs.find_program('python3-pylint'):
-        PYLINT = 'python3-pylint'
+
+if programs.find_program('pylint3'):
+    PYLINT = 'pylint3'
+elif programs.find_program('python3-pylint'):
+    PYLINT = 'python3-pylint'
 
 
 locale_codec = QTextCodec.codecForLocale()

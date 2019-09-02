@@ -1,7 +1,6 @@
 # postinstall script for TRex
 """Create TRex start menu and desktop entries"""
 
-from __future__ import print_function
 
 import os
 import sys

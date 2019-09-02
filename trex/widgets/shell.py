@@ -30,8 +30,7 @@ from qtpy.QtWidgets import QApplication, QMenu, QMessageBox, QToolTip
 from trex.config.base import _, DEBUG, get_conf_path, STDERR
 from trex.config.gui import config_shortcut, get_shortcut
 from trex.config.main import CONF
-from trex.py3compat import (builtins, is_string, is_text_string,
-                              PY3, to_text_string)
+from trex.py3compat import (builtins, is_string, is_text_string, to_text_string)
 from trex.utils import encoding
 from trex.utils import icon_manager as ima
 from trex.utils.qthelpers import (add_actions, create_action, keybinding,
@@ -592,18 +591,16 @@ class ShellBaseWidget(ConsoleBaseWidget, SaveHistoryMixin):
 
     def flush(self, error=False, prompt=False):
         """Flush buffer, write text to console"""
-        # Fix for Issue 2452 
-        if PY3:
-            try:
-                text = "".join(self.__buffer)
-            except TypeError:
-                text = b"".join(self.__buffer)
-                try:
-                    text = text.decode( locale.getdefaultlocale()[1] )
-                except:
-                    pass
-        else:
+        # Fix for Issue 2452
+        try:
             text = "".join(self.__buffer)
+        except TypeError:
+            text = b"".join(self.__buffer)
+            try:
+                text = text.decode( locale.getdefaultlocale()[1] )
+            except:
+                pass
+
 
         self.__buffer = []
         self.insert_text(text, at_end=True, error=error, prompt=prompt)

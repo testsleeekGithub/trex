@@ -17,7 +17,6 @@ import pytest
 # Local imports
 from trex.utils.codeanalysis import (check_with_pep8, check_with_pyflakes,
                                        find_tasks)
-from trex.py3compat import PY2
 
 TEST_FILE = os.path.join(os.path.dirname(__file__), 'data/example.py')
 
@@ -26,10 +25,7 @@ def test_codeanalysis():
     code = open(TEST_FILE).read()
     check_results = check_with_pyflakes(code, TEST_FILE) + \
                     check_with_pep8(code, TEST_FILE) + find_tasks(code)
-    if PY2:
-        num_results = 86
-    else:
-        num_results = 87
+    num_results = 87
     assert len(check_results) == num_results
 
 

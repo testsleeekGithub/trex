@@ -12,7 +12,7 @@
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import with_statement
+
 import os
 import os.path as osp
 import re
@@ -31,8 +31,7 @@ from qtpy.QtWidgets import (QFileSystemModel, QHBoxLayout, QFileIconProvider,
                             QWidget)
 # Local imports
 from trex.config.base import _
-from trex.py3compat import (getcwd, str_lower, to_binary_string,
-                              to_text_string, PY2)
+from trex.py3compat import (getcwd, str_lower, to_binary_string, to_text_string)
 from trex.utils import icon_manager as ima
 from trex.utils import encoding, misc, programs, vcs
 from trex.utils.qthelpers import add_actions, create_action, file_uri
@@ -1055,8 +1054,7 @@ class ExplorerTreeWidget(DirView):
                 self.history.append(directory)
             self.histindex = len(self.history)-1
         directory = to_text_string(directory)
-        if PY2:
-            PermissionError = OSError
+
         try:
             os.chdir(directory)
             self.parent_widget.open_dir.emit(directory)

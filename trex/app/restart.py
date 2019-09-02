@@ -32,7 +32,6 @@ from trex.utils import icon_manager as ima
 from trex.utils.qthelpers import qapplication
 
 
-PY2 = sys.version[0] == '2'
 IS_WINDOWS = os.name == 'nt'
 SLEEP_TIME = 0.2  # Seconds for throttling control
 CLOSE_ERROR, RESET_ERROR, RESTART_ERROR = [1, 2, 3]  # TRex error codes

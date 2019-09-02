@@ -9,7 +9,7 @@ Widget that handles communications between the IPython Console and
 the Help plugin
 """
 
-from __future__ import absolute_import
+
 
 import re
 
@@ -19,7 +19,6 @@ from qtconsole.ansi_code_processor import ANSI_OR_SPECIAL_PATTERN
 from qtconsole.rich_jupyter_widget import RichJupyterWidget
 
 from trex.config.base import _
-from trex.py3compat import PY3
 from trex.utils.dochelpers import getargspecfromtext, getsignaturefromtext
 
 
@@ -35,10 +34,8 @@ class HelpWidget(RichJupyterWidget):
 
         Taken from http://stackoverflow.com/a/3305731/438386
         """
-        if PY3:
-            return re.sub('\W|^(?=\d)', '_', var, re.UNICODE)
-        else:
-            return re.sub('\W|^(?=\d)', '_', var)
+        return re.sub('\W|^(?=\d)', '_', var, re.UNICODE)
+
 
     def get_signature(self, content):
         """Get signature from inspect reply content"""

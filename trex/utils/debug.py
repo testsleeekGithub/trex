@@ -11,13 +11,12 @@ Debug utilities that are independent of TRex code.
 See trex.config.base for other helpers.
 """
 
-from __future__ import print_function
+
 
 import inspect
 import traceback
 import time
 
-from trex.py3compat import PY2
 
 
 def log_time(fd):
@@ -35,10 +34,7 @@ def log_last_error(fname, context=None):
         print("Context", file=fd)
         print("-------", file=fd)
         print("", file=fd)
-        if PY2:
-            print(u' '.join(context).encode('utf-8').strip(), file=fd)
-        else:
-            print(context, file=fd)
+        print(context, file=fd)
         print("", file=fd)
         print("Traceback", file=fd)
         print("---------", file=fd)

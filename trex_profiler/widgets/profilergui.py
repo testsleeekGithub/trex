@@ -14,7 +14,7 @@ http://docs.python.org/library/profile.html
 """
 
 # Standard library imports
-from __future__ import with_statement
+
 import os
 import os.path as osp
 import sys

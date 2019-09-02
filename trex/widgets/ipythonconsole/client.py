@@ -11,7 +11,6 @@ This is the widget used on all its tabs
 """
 
 # Standard library imports
-from __future__ import absolute_import  # Fix for Issue 1356
 
 import codecs
 import os

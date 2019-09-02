@@ -18,7 +18,7 @@ Editor widget based on QtGui.QPlainTextEdit
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import division
+
 from unicodedata import category
 import os.path as osp
 import re

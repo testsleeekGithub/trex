@@ -17,7 +17,7 @@ Collections (i.e. dictionary, list and tuple) editor widget and dialog
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import print_function
+
 import datetime
 import gc
 import sys
@@ -38,7 +38,7 @@ from trex.config.base import _
 from trex.config.fonts import DEFAULT_SMALL_DELTA
 from trex.config.gui import get_font
 from trex.py3compat import (io, is_binary_string, is_text_string,
-                              getcwd, PY3, to_text_string)
+                              getcwd, to_text_string)
 from trex.utils import icon_manager as ima
 from trex.utils.misc import fix_reference_name
 from trex.utils.qthelpers import (add_actions, create_action,
@@ -1081,10 +1081,8 @@ class BaseTableView(QTableView):
             # to copy the whole thing in a tab separated format
             if isinstance(obj, (ndarray, MaskedArray)) \
               and ndarray is not FakeObject:
-                if PY3:
-                    output = io.BytesIO()
-                else:
-                    output = io.StringIO()
+                output = io.BytesIO()
+
                 try:
                     np_savetxt(output, obj, delimiter='\t')
                 except:
@@ -1098,10 +1096,8 @@ class BaseTableView(QTableView):
               and DataFrame is not FakeObject:
                 output = io.StringIO()
                 obj.to_csv(output, sep='\t', index=True, header=True)
-                if PY3:
-                    obj = output.getvalue()
-                else:
-                    obj = output.getvalue().decode('utf-8')
+                obj = output.getvalue()
+
                 output.close()
             elif is_binary_string(obj):
                 obj = to_text_string(obj, 'utf8')

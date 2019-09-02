@@ -5,7 +5,7 @@
 # (see trex/__init__.py for details)
 
 # Standard library imports
-from __future__ import print_function
+
 from collections import OrderedDict
 import time
 

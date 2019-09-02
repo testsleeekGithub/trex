@@ -28,7 +28,7 @@ TODO: Look for the pytables library if h5py is not found??
 TODO: Check issues with valid python names vs valid h5f5 names
 """
 
-from __future__ import print_function
+
 
 try:
     # Do not import h5py here because it will try to import IPython,

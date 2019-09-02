@@ -6,7 +6,7 @@
 
 """Utilities for version control systems"""
 
-from __future__ import print_function
+
 
 import sys
 import os.path as osp
@@ -15,7 +15,6 @@ import subprocess
 # Local imports
 from trex.utils import programs
 from trex.utils.misc import abspardir
-from trex.py3compat import PY3
 
 
 SUPPORTED = [
@@ -123,15 +122,14 @@ def get_git_revision(repopath):
         commit = programs.run_program(git, ['rev-parse', '--short', 'HEAD'],
                                       cwd=repopath).communicate()
         commit = commit[0].strip()
-        if PY3:
-            commit = commit.decode(sys.getdefaultencoding())
+        commit = commit.decode(sys.getdefaultencoding())
 
         # Branch
         branches = programs.run_program(git, ['branch'],
                                         cwd=repopath).communicate()
         branches = branches[0]
-        if PY3:
-            branches = branches.decode(sys.getdefaultencoding())
+
+        branches = branches.decode(sys.getdefaultencoding())
         branches = branches.split('\n')
         active_branch = [b for b in branches if b.startswith('*')]
         if len(active_branch) != 1:

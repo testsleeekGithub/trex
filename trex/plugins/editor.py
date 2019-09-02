@@ -34,7 +34,7 @@ from trex.config.main import (CONF, RUN_CELL_SHORTCUT,
                                 RUN_CELL_AND_ADVANCE_SHORTCUT)
 from trex.config.utils import (get_edit_filetypes, get_edit_filters,
                                  get_filter)
-from trex.py3compat import getcwd, PY2, qbytearray_to_str, to_text_string
+from trex.py3compat import getcwd, qbytearray_to_str, to_text_string
 from trex.utils import codeanalysis, encoding, programs, sourcecode
 from trex.utils import icon_manager as ima
 from trex.utils.introspection.manager import IntrospectionManager
@@ -374,7 +374,7 @@ class Editor(TRexPluginWidget):
             if os.name == "nt":
                 shebang = []
             else:
-                shebang = ['#!/usr/bin/env python' + ('2' if PY2 else '3')]
+                shebang = ['#!/usr/bin/env python3']
             header = shebang + [
                 '# -*- coding: utf-8 -*-',
                 '"""', 'Created on %(date)s', '',
@@ -744,7 +744,7 @@ class Editor(TRexPluginWidget):
                                     triggered=self.clear_all_breakpoints)
         self.winpdb_action = create_action(self, _("Debug with winpdb"),
                                            triggered=self.run_winpdb)
-        self.winpdb_action.setEnabled(WINPDB_PATH is not None and PY2)
+        self.winpdb_action.setEnabled(False)
 
         # --- Debug toolbar ---
         debug_action = create_action(self, _("&Debug"),

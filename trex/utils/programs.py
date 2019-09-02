@@ -6,7 +6,7 @@
 
 """Running programs utilities"""
 
-from __future__ import print_function
+
 
 from distutils.version import LooseVersion
 from getpass import getuser
@@ -21,7 +21,7 @@ import tempfile
 
 # Local imports
 from trex.utils import encoding
-from trex.py3compat import PY2, is_text_string, to_text_string
+from trex.py3compat import is_text_string, to_text_string
 
 
 class ProgramError(Exception):
@@ -275,9 +275,7 @@ def run_python_script_in_terminal(fname, wdir, args, interact,
         # encoding before passing them to subprocess, but only for
         # Python 2.
         # See http://bugs.python.org/issue1759845#msg74142 and Issue 1856
-        if PY2:
-            cmd = encoding.to_fs_from_unicode(cmd)
-            wdir = encoding.to_fs_from_unicode(wdir)
+
         try:
             run_shell_command(cmd, cwd=wdir)
         except WindowsError:

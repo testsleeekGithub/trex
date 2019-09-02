@@ -12,8 +12,6 @@ $ python setup.py build         (to update the docs)
 $ python create_app.py py2app   (to build the app)
 """
 
-from __future__ import print_function
-
 from setuptools import setup
 
 from distutils.sysconfig import get_python_lib, get_config_var
@@ -30,9 +28,6 @@ from trex import __version__ as spy_version
 from trex.config.utils import EDIT_FILETYPES, _get_extensions
 from trex.config.base import MAC_APP_NAME
 from trex.utils.programs import find_program
-
-
-PY2 = sys.version[0] == '2'
 
 
 # To deal with a bug in py2app 0.9
@@ -275,8 +270,8 @@ for line in fileinput.input(boot_file, inplace=True):
 # Workaround for what appears to be a bug with py2app and Homebrew
 # See https://bitbucket.org/ronaldoussoren/py2app/issue/26#comment-2092445
 PF_dir = get_config_var('PYTHONFRAMEWORKINSTALLDIR')
-if not PY2:
-    PF_dir = osp.join(PF_dir, 'Versions', py_ver)
+
+PF_dir = osp.join(PF_dir, 'Versions', py_ver)
 app_python_interpreter = 'dist/%s/Contents/MacOS/python' % MAC_APP_NAME
 shutil.copyfile(osp.join(PF_dir, 'Resources/Python.app/Contents/MacOS/Python'),
                 app_python_interpreter)

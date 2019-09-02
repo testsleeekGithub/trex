@@ -11,7 +11,7 @@ Note: 'load' functions has to return a dictionary from which a globals()
       namespace may be updated
 """
 
-from __future__ import print_function
+
 
 import sys
 import os
@@ -35,7 +35,7 @@ except:
 
 # Local imports
 from trex.config.base import _, get_conf_path
-from trex.py3compat import pickle, to_text_string, getcwd, PY2
+from trex.py3compat import pickle, to_text_string, getcwd
 
 
 class MatlabStruct(dict):
@@ -85,7 +85,7 @@ class MatlabStruct(dict):
                    dis.opmap.get('STOP_CODE', 0)]
         bytecode = frame.f_code.co_code
         instruction = bytecode[frame.f_lasti + 3]
-        instruction = ord(instruction) if PY2 else instruction
+        instruction = instruction
         return instruction in allowed
 
     __setattr__ = dict.__setitem__
@@ -273,10 +273,7 @@ def load_pickle(filename):
 def load_json(filename):
     """Load a json file as a dictionary"""
     try:
-        if PY2:
-            args = 'rb'
-        else:
-            args = 'r'
+        args = 'r'
         with open(filename, args) as fid:
             data = json.load(fid)
         return data, None

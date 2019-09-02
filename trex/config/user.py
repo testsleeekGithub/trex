@@ -10,8 +10,6 @@ This module provides user configuration file management features for TRex
 It's based on the ConfigParser module (present in the standard library).
 """
 
-from __future__ import print_function
-
 # Std imports
 import ast
 import os
@@ -25,11 +23,7 @@ from trex.config.base import (get_conf_path, get_home_dir,
                                 get_module_source_path, TEST)
 from trex.utils.programs import check_version
 from trex.py3compat import configparser as cp
-from trex.py3compat import PY2, is_text_string, to_text_string
-
-# Std imports for Python 2
-if PY2:
-    import codecs
+from trex.py3compat import is_text_string, to_text_string
 
 
 #==============================================================================
@@ -98,14 +92,8 @@ class DefaultsConfig(cp.ConfigParser):
         fname = self.filename()
 
         def _write_file(fname):
-            if PY2:
-                # Python 2
-                with codecs.open(fname, 'w', encoding='utf-8') as configfile:
-                    self._write(configfile)
-            else:
-                # Python 3
-                with open(fname, 'w', encoding='utf-8') as configfile:
-                    self.write(configfile)
+            with open(fname, 'w', encoding='utf-8') as configfile:
+                self.write(configfile)
 
         try: # the "easy" way
             _write_file(fname)
@@ -238,18 +226,7 @@ class UserConfig(DefaultsConfig):
         Load config from the associated .ini file
         """
         try:
-            if PY2:
-                # Python 2
-                fname = self.filename()
-                if osp.isfile(fname):
-                    try:
-                        with codecs.open(fname, encoding='utf-8') as configfile:
-                            self.readfp(configfile)
-                    except IOError:
-                        print("Failed reading file", fname)  # trex: test-skip
-            else:
-                # Python 3
-                self.read(self.filename(), encoding='utf-8')
+            self.read(self.filename(), encoding='utf-8')
         except cp.MissingSectionHeaderError:
             print("Warning: File contains no section headers.")  # trex: test-skip
     
@@ -387,11 +364,6 @@ class UserConfig(DefaultsConfig):
         elif isinstance(default_value, int):
             value = int(value)
         else:
-            if PY2 and is_text_string(default_value):
-                try:
-                    value = value.decode('utf-8')
-                except (UnicodeEncodeError, UnicodeDecodeError):
-                    pass
             try:
                 # lists, tuples, ...
                 value = ast.literal_eval(value)
@@ -419,9 +391,6 @@ class UserConfig(DefaultsConfig):
         if default_value is NoDefault:
             # This let us save correctly string value options with
             # no config default that contain non-ascii chars in
-            # Python 2
-            if PY2 and is_text_string(value):
-                value = repr(value)
             default_value = value
             self.set_default(section, option, default_value)
         if isinstance(default_value, bool):

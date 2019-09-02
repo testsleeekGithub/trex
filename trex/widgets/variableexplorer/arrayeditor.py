@@ -14,7 +14,6 @@ NumPy Array Editor Dialog based on Qt
 # pylint: disable=R0201
 
 # Standard library imports
-from __future__ import print_function
 
 # Third party imports
 from qtpy.compat import from_qvariant, to_qvariant
@@ -34,7 +33,7 @@ from trex.config.base import _
 from trex.config.fonts import DEFAULT_SMALL_DELTA
 from trex.config.gui import get_font, config_shortcut
 from trex.py3compat import (io, is_binary_string, is_string,
-                              is_text_string, PY3, to_binary_string,
+                              is_text_string, to_binary_string,
                               to_text_string)
 from trex.utils import icon_manager as ima
 from trex.utils.qthelpers import add_actions, create_action, keybinding
@@ -486,10 +485,8 @@ class ArrayView(QTableView):
             row_max = self.model().total_rows-1
         
         _data = self.model().get_data()
-        if PY3:
-            output = io.BytesIO()
-        else:
-            output = io.StringIO()
+        output = io.BytesIO()
+
         try:
             np.savetxt(output, _data[row_min:row_max+1, col_min:col_max+1],
                        delimiter='\t')

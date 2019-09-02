@@ -7,7 +7,7 @@
 """Shortcut management"""
 
 # Standard library imports
-from __future__ import print_function
+
 
 import os
 import os.path as osp
@@ -20,7 +20,7 @@ from qtpy.QtWidgets import (QButtonGroup, QGroupBox, QInputDialog, QLabel,
 # Local imports
 from trex.config.base import _
 from trex.plugins.configdialog import GeneralConfigPage
-from trex.py3compat import PY2, is_text_string, to_text_string
+from trex.py3compat import is_text_string, to_text_string
 from trex.utils import icon_manager as ima
 from trex.utils.misc import get_python_executable
 from trex.utils import programs
@@ -195,17 +195,7 @@ class MainInterpreterConfigPage(GeneralConfigPage):
                 fixed_namelist = []
                 non_ascii_namelist = []
                 for module_name in namelist:
-                    if PY2:
-                        if all(ord(c) < 128 for c in module_name):
-                            if programs.is_module_installed(module_name):
-                                fixed_namelist.append(module_name)
-                        else:
-                            QMessageBox.warning(self, _('Warning'),
-                            _("You are working with Python 2, this means that "
-                              "you can not import a module that contains non-"
-                              "ascii characters."), QMessageBox.Ok)
-                            non_ascii_namelist.append(module_name)
-                    elif programs.is_module_installed(module_name):
+                    if programs.is_module_installed(module_name):
                         fixed_namelist.append(module_name)
                 invalid = ", ".join(set(namelist)-set(fixed_namelist)-
                                     set(non_ascii_namelist))

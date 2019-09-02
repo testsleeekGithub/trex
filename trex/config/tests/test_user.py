@@ -13,17 +13,13 @@ import pytest
 
 # Local imports
 from trex.config.user import UserConfig
-from trex.py3compat import PY2
 
 @pytest.fixture
 def userconfig(tmpdir, monkeypatch):
     monkeypatch.setattr('trex.config.user.get_conf_path', lambda: str(tmpdir))
     inifile = tmpdir.join('foo.ini')
     iniContents = '[main]\nversion = 1.0.0\n\n'
-    if PY2: # strings are quoted in Python2 but not in Python3
-        iniContents += "[section]\noption = 'value'\n\n"
-    else:
-        iniContents += "[section]\noption = value\n\n"
+    iniContents += "[section]\noption = value\n\n"
     inifile.write(iniContents)
     return UserConfig('foo', defaults={}, subfolder=True,
                       version='1.0.0', raw_mode=True)
@@ -41,10 +37,7 @@ def test_userconfig_set_with_string(userconfig):
     with open(userconfig.filename()) as inifile:
         iniContents = inifile.read()
     expected = '[main]\nversion = 1.0.0\n\n'
-    if PY2:
-        expected += "[section]\noption = 'new value'\n\n"
-    else:
-        expected += "[section]\noption = new value\n\n"
+    expected += "[section]\noption = new value\n\n"
     assert iniContents == expected
 
 

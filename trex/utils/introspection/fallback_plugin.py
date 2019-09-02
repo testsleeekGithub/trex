@@ -8,7 +8,7 @@
 Introspection utilities used by TRex
 """
 
-from __future__ import print_function
+
 import imp
 import os
 import os.path as osp

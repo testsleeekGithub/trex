@@ -7,7 +7,7 @@
 Tests for dataframeeditor.py
 """
 
-from __future__ import division
+
 
 # Standard library imports
 try:
@@ -28,7 +28,6 @@ from trex.utils.programs import is_module_installed
 from trex.widgets.variableexplorer import dataframeeditor
 from trex.widgets.variableexplorer.dataframeeditor import (
     DataFrameEditor, DataFrameModel)
-from trex.py3compat import PY2
 
 FILES_PATH = os.path.dirname(os.path.realpath(__file__))
 

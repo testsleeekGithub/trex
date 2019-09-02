@@ -14,7 +14,6 @@ import pytest
 # Local imports
 from trex.utils.introspection.module_completion import (module_completion, 
                                                           get_preferred_submodules)
-from trex.py3compat import PY3
 
 def test_module_completion():
     """Test module_completion."""
@@ -39,12 +38,9 @@ def test_module_completion():
     s = 'from xml.etree.ElementTree import '
     assert module_completion(s + 'V') == ['VERSION']
 
-    if PY3:
-        assert sorted(module_completion(s + 'VERSION, XM')) == \
-            ['XML', 'XMLID', 'XMLParser', 'XMLPullParser']
-    else:
-        assert sorted(module_completion(s + 'VERSION, XM')) == \
-            ['XML', 'XMLID', 'XMLParser', 'XMLTreeBuilder']
+    assert sorted(module_completion(s + 'VERSION, XM')) == \
+        ['XML', 'XMLID', 'XMLParser', 'XMLPullParser']
+
 
     assert module_completion(s + '(dum') == ['dump']
 

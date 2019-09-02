@@ -14,15 +14,11 @@ from qtpy.QtCore import QObject, Signal
 # Local imports
 from trex import __version__
 from trex.config.base import _
-from trex.py3compat import PY3
 from trex.utils.programs import check_version, is_stable_version
 
 
-if PY3:
-    from urllib.request import urlopen
-    from urllib.error import URLError, HTTPError
-else:
-    from urllib2 import urlopen, URLError, HTTPError
+from urllib.request import urlopen
+from urllib.error import URLError, HTTPError
 
 
 class WorkerUpdates(QObject):
