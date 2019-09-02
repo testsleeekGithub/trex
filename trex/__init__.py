@@ -31,7 +31,7 @@ version_info = (3, 1, 4)
 
 __version__ = '.'.join(map(str, version_info))
 __license__ = __doc__
-__project_url__ = 'https://github.com/trex-ide/trex'
+__project_url__ = 'https://github.com/novaya/trex'
 __forum_url__   = 'http://groups.google.com/group/trexlib'
 
 # Dear (Debian, RPM, ...) package makers, please feel free to customize the

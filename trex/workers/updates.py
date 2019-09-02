@@ -59,7 +59,7 @@ class WorkerUpdates(QObject):
 
     def start(self):
         """Main method of the WorkerUpdates worker"""
-        self.url = 'https://api.github.com/repos/trex-ide/trex/releases'
+        self.url = 'https://api.github.com/repos/novaya/trex/releases'
         self.update_available = False
         self.latest_release = __version__
 

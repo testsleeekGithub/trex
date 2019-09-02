@@ -2266,7 +2266,7 @@ class MainWindow(QMainWindow):
         revlink = ''
         if versions['revision']:
             rev = versions['revision']
-            revlink = " (<a href='https://github.com/trex-ide/trex/"\
+            revlink = " (<a href='https://github.com/novaya/trex/"\
                       "commit/%s'>Commit: %s</a>)" % (rev, rev)
         QMessageBox.about(self,
             _("About %s") % "TRex",
@@ -2355,7 +2355,7 @@ class MainWindow(QMainWindow):
        versions['system'],
        dependencies.status())
 
-        url = QUrl("https://github.com/trex-ide/trex/issues/new")
+        url = QUrl("https://github.com/novaya/trex/issues/new")
         if PYQT5:
             from qtpy.QtCore import QUrlQuery
             query = QUrlQuery()
@@ -2749,7 +2749,7 @@ class MainWindow(QMainWindow):
         latest_release = self.worker_updates.latest_release
         error_msg = self.worker_updates.error
 
-        url_r = 'https://github.com/trex-ide/trex/releases'
+        url_r = 'https://github.com/novaya/trex/releases'
         url_i = 'http://pythonhosted.org/trex/installation.html'
 
         # Define the custom QMessageBox
