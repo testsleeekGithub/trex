@@ -276,7 +276,7 @@ def get_preferred_submodules():
         return modules_db['submodules']
     
     mods = ['numpy', 'scipy', 'sympy', 'pandas', 'networkx', 'statsmodels',
-            'matplotlib', 'sklearn', 'skimage', 'mpmath', 'os', 'PIL',
+            'matplotlib', 'mrex', 'skimage', 'mpmath', 'os', 'PIL',
             'OpenGL', 'array', 'audioop', 'binascii', 'cPickle', 'cStringIO',
             'cmath', 'collections', 'datetime', 'errno', 'exceptions', 'gc',
             'imageop', 'imp', 'itertools', 'marshal', 'math', 'mmap', 'msvcrt',
