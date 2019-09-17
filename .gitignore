@@ -25,7 +25,6 @@ trex_crash.log
 *.pyc
 *.so
 *.pyd
-*~
 .#*
 *.lprof
 *.swp
@@ -83,8 +82,8 @@ benchmarks/bench_covertype_data/
 *.c
 *.cpp
 
-!*/src/*.c
-!*/src/*.cpp
+!/**/src/**/*.c
+!/**/src/**/*.cpp
 *.sln
 *.pyproj
 
