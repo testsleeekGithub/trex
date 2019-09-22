@@ -1,6 +1,8 @@
 
-Another useful tool in porting to python3 is ``pylint``. It is a code analyzer that can catch errors in the code without running it.
-If you run ``pylint`` with ``--py3k`` flag it reports code incompatible with Python3::
+Another useful tool in porting to python3 is ``pylint``. It is a code
+analyzer that can catch errors in the code without running it.
+If you run ``pylint`` with ``--py3k`` flag it reports code incompatible
+with Python3::
 
     pylint --py3k example.py
 
@@ -9,33 +11,19 @@ Unpacking arguments also could be used in lambda functions in python2:
 
 >>> # Python2 example
 >>>
->>> lambda a, (b, c): (a, b, c)
->>>
+>>> f = lambda a, (b, c): (a, b, c)
+>>> f(1, (2, 3))
+(1, 2, 3)
 
 This does not work in python3:
 
 >>> # Python3 example
 >>>
->>> lambda a, (b, c): (a, b, c)
+>>> f = lambda a, (b, c): (a, b, c)
 SyntaxError: invalid syntax
 
-
-In Python2 it is possible to unpack the arguments of an exception like this:
-
-.. code-block:: python
-
-    except RuntimeError as (num, message):
-
-In Python 3you have to use args attribute:
-
-.. code-block:: python
-
-    except RuntimeError as e:
-        num, message = e.args
-
-
-
-In Python 3, we can raise and catch only instance of BaseException class or its subclasses.
+In Python 3, we can raise and catch only instance of :py:`BaseException`
+class or its subclasses
 
 >>> # Python3 example
 >>>
@@ -62,10 +50,34 @@ In Python 3, so called star imports in classes and functions are not allowed
         pass
 
 
-In Python 2, reading from a file opened by open() yielded the generic str.
+In Python2, reading from a file opened by `open()` yielded the generic `str`.
+>>> # Python2 example
+>>>
+>>> f = open('setup.py', 'rb')
+>>> type(f)
+file
+>>> type(f.read())
+str
+>>> f = open('setup.py', 'r')
+>>> type(f)
+file
+>>> type(f.read())
+str
 
-In Python 3, the type of file contents depends on the mode the file was opened with.
-By default, this is text strings; b in mode selects bytes:
+In Python3, the type of file contents depends on the mode the file was opened with:
+
+>>> # Python3 example
+>>>
+>>> f = open('setup.py', 'rb')
+>>> type(f)
+_io.BufferedReader
+>>> type(f.read())
+bytes
+>>> f= open('setup.py', 'r')
+>>> type(f)
+_io.TextIOWrapper
+>>> type(f.read())
+str
 
 
 In python 2 dictionaries have :py:`has_key()` method
