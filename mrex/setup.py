@@ -1,5 +1,4 @@
 import os
-
 from mrex._build_utils import maybe_cythonize_extensions
 
 

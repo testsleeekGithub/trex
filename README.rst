@@ -1,170 +1,144 @@
-.. -*- mode: rst -*-
 
-|Azure|_ |Travis|_ |Codecov|_ |CircleCI|_ |Python35|_ |PyPi|_ |DOI|_
+Another useful tool in porting to python3 is ``pylint``. It is a code analyzer that can catch errors in the code without running it.
+If you run ``pylint`` with ``--py3k`` flag it reports code incompatible with Python3::
 
-.. |Azure| image:: https://dev.azure.com/scikit-learn/scikit-learn/_apis/build/status/scikit-learn.scikit-learn?branchName=master
-.. _Azure: https://dev.azure.com/scikit-learn/scikit-learn/_build/latest?definitionId=1&branchName=master
-
-.. |Travis| image:: https://api.travis-ci.org/scikit-learn/scikit-learn.svg?branch=master
-.. _Travis: https://travis-ci.org/scikit-learn/scikit-learn
-
-.. |Codecov| image:: https://codecov.io/github/scikit-learn/scikit-learn/badge.svg?branch=master&service=github
-.. _Codecov: https://codecov.io/github/scikit-learn/scikit-learn?branch=master
-
-.. |CircleCI| image:: https://circleci.com/gh/scikit-learn/scikit-learn/tree/master.svg?style=shield&circle-token=:circle-token
-.. _CircleCI: https://circleci.com/gh/scikit-learn/scikit-learn
-
-.. |Python35| image:: https://img.shields.io/badge/python-3.5-blue.svg
-.. _Python35: https://badge.fury.io/py/scikit-learn
-
-.. |PyPi| image:: https://badge.fury.io/py/scikit-learn.svg
-.. _PyPi: https://badge.fury.io/py/scikit-learn
-
-.. |DOI| image:: https://zenodo.org/badge/21369/scikit-learn/scikit-learn.svg
-.. _DOI: https://zenodo.org/badge/latestdoi/21369/scikit-learn/scikit-learn
-
-scikit-learn
-============
-
-scikit-learn is a Python module for machine learning built on top of
-SciPy and is distributed under the 3-Clause BSD license.
-
-The project was started in 2007 by David Cournapeau as a Google Summer
-of Code project, and since then many volunteers have contributed. See
-the `About us <http://scikit-learn.org/dev/about.html#authors>`_ page
-for a list of core contributors.
-
-It is currently maintained by a team of volunteers.
-
-Website: http://scikit-learn.org
+    pylint --py3k example.py
 
 
-Installation
-------------
+Unpacking arguments also could be used in lambda functions in python2:
 
-Dependencies
-~~~~~~~~~~~~
+>>> # Python2 example
+>>>
+>>> lambda a, (b, c): (a, b, c)
+>>>
 
-scikit-learn requires:
+This does not work in python3:
 
-- Python (>= 3.5)
-- NumPy (>= 1.11.0)
-- SciPy (>= 0.17.0)
-- joblib (>= 0.11)
-
-**Scikit-learn 0.20 was the last version to support Python 2.7 and Python 3.4.**
-scikit-learn 0.21 and later require Python 3.5 or newer.
-
-Scikit-learn plotting capabilities (i.e., functions start with "plot_"
-and classes end with "Display") require Matplotlib (>= 1.5.1). For running the
-examples Matplotlib >= 1.5.1 is required. A few examples require
-scikit-image >= 0.12.3, a few examples require pandas >= 0.18.0.
-
-User installation
-~~~~~~~~~~~~~~~~~
-
-If you already have a working installation of numpy and scipy,
-the easiest way to install scikit-learn is using ``pip``   ::
-
-    pip install -U scikit-learn
-
-or ``conda``::
-
-    conda install scikit-learn
-
-The documentation includes more detailed `installation instructions <http://scikit-learn.org/stable/install.html>`_.
+>>> # Python3 example
+>>>
+>>> lambda a, (b, c): (a, b, c)
+SyntaxError: invalid syntax
 
 
-Changelog
----------
+In Python2 it is possible to unpack the arguments of an exception like this:
 
-See the `changelog <http://scikit-learn.org/dev/whats_new.html>`__
-for a history of notable changes to scikit-learn.
+.. code-block:: python
 
-Development
------------
+    except RuntimeError as (num, message):
 
-We welcome new contributors of all experience levels. The scikit-learn
-community goals are to be helpful, welcoming, and effective. The
-`Development Guide <http://scikit-learn.org/stable/developers/index.html>`_
-has detailed information about contributing code, documentation, tests, and
-more. We've included some basic information in this README.
+In Python 3you have to use args attribute:
 
-Important links
-~~~~~~~~~~~~~~~
+.. code-block:: python
 
-- Official source code repo: https://github.com/scikit-learn/scikit-learn
-- Download releases: https://pypi.org/project/scikit-learn/
-- Issue tracker: https://github.com/scikit-learn/scikit-learn/issues
-
-Source code
-~~~~~~~~~~~
-
-You can check the latest sources with the command::
-
-    git clone https://github.com/scikit-learn/scikit-learn.git
-
-Contributing
-~~~~~~~~~~~~
-
-To learn more about making a contribution to scikit-learn, please see our
-`Contributing guide
-<https://scikit-learn.org/dev/developers/contributing.html>`_.
-
-Testing
-~~~~~~~
-
-After installation, you can launch the test suite from outside the
-source directory (you will need to have ``pytest`` >= 3.3.0 installed)::
-
-    pytest mrex
-
-See the web page http://scikit-learn.org/dev/developers/advanced_installation.html#testing
-for more information.
-
-    Random number generation can be controlled during testing by setting
-    the ``MREX_SEED`` environment variable.
-
-Submitting a Pull Request
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Before opening a Pull Request, have a look at the
-full Contributing page to make sure your code complies
-with our guidelines: http://scikit-learn.org/stable/developers/index.html
+    except RuntimeError as e:
+        num, message = e.args
 
 
-Project History
----------------
 
-The project was started in 2007 by David Cournapeau as a Google Summer
-of Code project, and since then many volunteers have contributed. See
-the  `About us <http://scikit-learn.org/dev/about.html#authors>`_ page
-for a list of core contributors.
+In Python 3, we can raise and catch only instance of BaseException class or its subclasses.
 
-The project is currently maintained by a team of volunteers.
+>>> # Python3 example
+>>>
+>>> class A: pass
+>>> class B(BaseException): pass
+>>> raise A
+TypeError: exceptions must derive from BaseException
+>>> if True: raise B
+if True: raise B
+B
 
-**Note**: `scikit-learn` was previously referred to as `scikits.learn`.
+
+In Python 3, so called star imports in classes and functions are not allowed
+
+.. code-block:: python
+
+    # This is SyntaxError in python3
+    def f():
+        from math import *
+        return sin(1.3)
+
+    class A:
+        from os import *
+        pass
 
 
-Help and Support
-----------------
+In Python 2, reading from a file opened by open() yielded the generic str.
 
-Documentation
-~~~~~~~~~~~~~
+In Python 3, the type of file contents depends on the mode the file was opened with.
+By default, this is text strings; b in mode selects bytes:
 
-- HTML documentation (stable release): http://scikit-learn.org
-- HTML documentation (development version): http://scikit-learn.org/dev/
-- FAQ: http://scikit-learn.org/stable/faq.html
 
-Communication
-~~~~~~~~~~~~~
+In python 2 dictionaries have :py:`has_key()` method
 
-- Mailing list: https://mail.python.org/mailman/listinfo/scikit-learn
-- IRC channel: ``#scikit-learn`` at ``webchat.freenode.net``
-- Stack Overflow: https://stackoverflow.com/questions/tagged/scikit-learn
-- Website: http://scikit-learn.org
+>>> # Python2 example
+>>>
+>>> dictionary.has_key('keyname')
+False
 
-Citation
-~~~~~~~~
 
-If you use scikit-learn in a scientific publication, we would appreciate citations: http://scikit-learn.org/stable/about.html#citing-scikit-learn
+In python3 :py:`has_key()` method is removed
+>>> # Python3 example
+>>>
+>>> dictionary.has_key('keyname')
+AttributeError: 'dict' object has no attribute 'has_key'
+
+But you can use :py:`in` to do the same thing:
+
+>>> # Python3 and python2 example
+>>>
+>>> 'key' in dictionary
+False
+
+
+
+The methods :py:`dict.iterkeys()`, :py:`dict.iteritems()` :py:`dict.itervalues()`, :py:`dict.viewkeys()`, :py:`dict.viewitems()`
+and :py:`dict.viewvalues()`, are not available in python3.
+The methods :py:`dict.keys()`, :py:`dict.items()` and :py:`dict.values()`
+instead of lists return set like objects:
+
+.. code-block:: python
+
+    # Python3 example
+
+    for x in d.keys():
+        pass
+    if y in d.values():
+        pass
+    z = len(d.items())
+
+    # set operations
+    symmetric_difference = d.keys() ^ d2.keys()
+    union = d.values() | d2.values()
+    intersection = d.items() & d2.items()
+
+
+Be careful, if the underlying dictionary is modified, all assigned :py:`keys`, :py:`values`, and :py:`items`
+are also modified
+
+>>> # Python3 example
+>>> x = {'a': 1, 'b': 2, 'c': 3}
+>>> k = d.keys()
+>>> v = d.values()
+>>> i = d.items()
+>>> k
+dict_keys(['a', 'b', 'c'])
+>>> v
+dict_values([1, 2, 3])
+>>>> i
+dict_items([('a', 1), ('b', 2), ('c', 3)])
+>>> x['d'] = 4
+>>> k
+dict_keys(['a', 'b', 'c', 'd'])
+>>> v
+dict_values([1, 2, 3, 4])
+>>> i
+dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4)])
+>>>
+>>> # Indexing also does not work with these objects
+>>>
+>>> k[1]
+TypeError: 'dict_keys' object does not support indexing
+>>> v[1]
+TypeError: 'dict_values' object does not support indexing
+>>> i[1]
+TypeError: 'dict_items' object does not support indexing

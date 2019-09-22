@@ -1,26 +1,27 @@
+import builtins
+builtins.__MREX_SETUP__ = True
+
 import sys
+
+#sys.argv = ['setup.py', 'build_ext', '-i']
+#sys.argv = ['setup.py', 'clean']
+
 import os
 import shutil
-
 from distutils.command.clean import clean as Clean
 
 from numpy.distutils.command.build_ext import build_ext
 from numpy.distutils.misc_util import Configuration
 from numpy.distutils.core import setup
 
-
-sys.argv = ['setup.py', 'build_ext', '-i']
-
-#sys.argv = ['setup.py', 'clean']
-
-import builtins
-builtins.__MREX_SETUP__ = True
-from mrex._build_utils.openmp_helpers import get_openmp_flag
 import mrex
+from mrex._build_utils.openmp_helpers import get_openmp_flag
+
+
+
 VERSION = mrex.__version__
 
 
-# Custom clean command to remove build artifacts
 class CleanCommand(Clean):
 
     description = "Remove build artifacts from the source tree"
@@ -61,17 +62,9 @@ class build_ext_subclass(build_ext):
         build_ext.build_extensions(self)
 
 
-cmdclass = {
-    'clean': CleanCommand,
-    'build_ext': build_ext_subclass,
-}
-
-
 def configuration(parent_package='', top_path=None):
 
     config = Configuration(None, parent_package, top_path)
-    # Avoid non-useful msg:
-    # "Ignoring attempt to set 'name' (from ... "
     config.set_options(ignore_setup_xxx_py=True,
                        assume_default_configuration=True,
                        delegate_options_to_subpackages=True,
@@ -80,4 +73,4 @@ def configuration(parent_package='', top_path=None):
     return config
 
 
-setup(version=VERSION, cmdclass=cmdclass, configuration=configuration)
+setup(version=VERSION, cmdclass={'clean': CleanCommand, 'build_ext': build_ext_subclass}, configuration=configuration)

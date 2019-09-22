@@ -1,7 +1,6 @@
 # Author: Alexandre Gramfort <alexandre.gramfort@inria.fr>
 # License: BSD 3 clause
 import os
-
 import numpy
 
 
