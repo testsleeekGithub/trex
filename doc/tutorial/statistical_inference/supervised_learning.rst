@@ -1,5 +1,7 @@
 .. _supervised_learning_tut:
 
+.. contents::
+
 =======================================================================================
 Supervised learning: predicting an output variable from high-dimensional observations
 =======================================================================================
@@ -7,8 +9,7 @@ Supervised learning: predicting an output variable from high-dimensional observa
 
 .. topic:: The problem solved in supervised learning
 
-   :ref:`Supervised learning <supervised-learning>`
-   consists in learning the link between two
+   Supervised learning consists in learning the link between two
    datasets: the observed data ``X`` and an external variable ``y`` that we
    are trying to predict, usually called "target" or "labels". Most often,
    ``y`` is a 1D array of length ``n_samples``.
@@ -29,8 +30,8 @@ Supervised learning: predicting an output variable from high-dimensional observa
    When doing classification in scikit-learn, ``y`` is a vector of integers
    or strings.
 
-   Note: See the :ref:`Introduction to machine learning with scikit-learn
-   Tutorial <introduction>` for a quick run-through on the basic machine
+   Note: See the `Introduction to machine learning with scikit-learn
+   Tutorial` for a quick run-through on the basic machine
    learning vocabulary used within scikit-learn.
 
 Nearest neighbor and the curse of dimensionality
@@ -38,10 +39,7 @@ Nearest neighbor and the curse of dimensionality
 
 .. topic:: Classifying irises:
 
-    .. image:: /auto_examples/datasets/images/sphx_glr_plot_iris_dataset_001.png
-        :target: ../../auto_examples/datasets/plot_iris_dataset.html
-        :align: right
-	:scale: 65
+
 
     The iris dataset is a classification task consisting in identifying 3
     different types of irises (Setosa, Versicolour, and Virginica) from
@@ -60,7 +58,7 @@ The simplest possible classifier is the
 `nearest neighbor <https://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm>`_:
 given a new observation ``X_test``, find in the training set (i.e. the data
 used to train the estimator) the observation with the closest feature vector.
-(Please see the :ref:`Nearest Neighbors section<neighbors>` of the online
+(Please see the `Nearest Neighbors section` of the online
 Scikit-learn documentation for more information about this type of classifier.)
 
 .. topic:: Training set and testing set
@@ -73,10 +71,6 @@ Scikit-learn documentation for more information about this type of classifier.)
 
 **KNN (k nearest neighbors) classification example**:
 
-.. image:: /auto_examples/neighbors/images/sphx_glr_plot_classification_001.png
-   :target: ../../auto_examples/neighbors/plot_classification.html
-   :align: center
-   :scale: 70
 
 ::
 
@@ -148,17 +142,11 @@ Linear model: from regression to sparsity
 Linear regression
 ------------------
 
-.. currentmodule:: mrex.linear_model
 
-:class:`LinearRegression`,
+`LinearRegression`,
 in its simplest form, fits a linear model to the data set by adjusting
 a set of parameters in order to make the sum of the squared residuals
 of the model as small as possible.
-
-.. image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_001.png
-   :target: ../../auto_examples/linear_model/plot_ols.html
-   :scale: 40
-   :align: right
 
 Linear models: :math:`y = X\beta + \epsilon`
 
@@ -197,10 +185,6 @@ Shrinkage
 If there are few data points per dimension, noise in the observations
 induces high variance:
 
-.. image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_ridge_variance_001.png
-   :target: ../../auto_examples/linear_model/plot_ols_ridge_variance.html
-   :scale: 70
-   :align: right
 
 ::
 
@@ -223,13 +207,9 @@ induces high variance:
 
 A solution in high-dimensional statistical learning is to *shrink* the
 regression coefficients to zero: any two randomly chosen set of
-observations are likely to be uncorrelated. This is called :class:`Ridge`
+observations are likely to be uncorrelated. This is called `Ridge`
 regression:
 
-.. image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_ridge_variance_002.png
-   :target: ../../auto_examples/linear_model/plot_ols_ridge_variance.html
-   :scale: 70
-   :align: right
 
 ::
 
@@ -272,28 +252,6 @@ diabetes dataset rather than our synthetic data::
 Sparsity
 ----------
 
-
-.. |diabetes_ols_1| image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_3d_001.png
-   :target: ../../auto_examples/linear_model/plot_ols_3d.html
-   :scale: 65
-
-.. |diabetes_ols_3| image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_3d_003.png
-   :target: ../../auto_examples/linear_model/plot_ols_3d.html
-   :scale: 65
-
-.. |diabetes_ols_2| image:: /auto_examples/linear_model/images/sphx_glr_plot_ols_3d_002.png
-   :target: ../../auto_examples/linear_model/plot_ols_3d.html
-   :scale: 65
-
-
-
-
-.. rst-class:: centered
-
-    **Fitting only features 1 and 2**
-
-.. centered:: |diabetes_ols_1| |diabetes_ols_3| |diabetes_ols_2|
-
 .. note::
 
    A representation of the full diabetes dataset would involve 11
@@ -307,10 +265,10 @@ We can see that, although feature 2 has a strong coefficient on the full
 model, it conveys little information on ``y`` when considered with feature 1.
 
 To improve the conditioning of the problem (i.e. mitigating the
-:ref:`curse_of_dimensionality`), it would be interesting to select only the
+`curse_of_dimensionality`), it would be interesting to select only the
 informative features and set non-informative ones, like feature 2 to 0. Ridge
 regression will decrease their contribution, but not set them to zero. Another
-penalization approach, called :ref:`lasso` (least absolute shrinkage and
+penalization approach, called `lasso` (least absolute shrinkage and
 selection operator), can set some coefficients to zero. Such methods are
 called **sparse method** and sparsity can be seen as an
 application of Occam's razor: *prefer simpler models*.
@@ -337,7 +295,7 @@ application of Occam's razor: *prefer simpler models*.
     solves the lasso regression problem using a
     `coordinate descent <https://en.wikipedia.org/wiki/Coordinate_descent>`_ method,
     that is efficient on large datasets. However, scikit-learn also
-    provides the :class:`LassoLars` object using the *LARS* algorithm,
+    provides the `LassoLars` object using the *LARS* algorithm,
     which is very efficient for problems in which the weight vector estimated
     is very sparse (i.e. problems with very few observations).
 
@@ -345,11 +303,6 @@ application of Occam's razor: *prefer simpler models*.
 
 Classification
 ---------------
-
-.. image:: /auto_examples/linear_model/images/sphx_glr_plot_logistic_001.png
-   :target: ../../auto_examples/linear_model/plot_logistic.html
-   :scale: 65
-   :align: right
 
 For classification, as in the labeling
 `iris <https://en.wikipedia.org/wiki/Iris_flower_data_set>`_ task, linear
@@ -368,11 +321,7 @@ function or **logistic** function:
     >>> log.fit(iris_X_train, iris_y_train)
     LogisticRegression(C=100000.0)
 
-This is known as :class:`LogisticRegression`.
-
-.. image:: /auto_examples/linear_model/images/sphx_glr_plot_iris_logistic_001.png
-   :target: ../../auto_examples/linear_model/plot_iris_logistic.html
-   :scale: 83
+This is known as `LogisticRegression`.
 
 .. topic:: Multiclass classification
 
@@ -383,22 +332,18 @@ This is known as :class:`LogisticRegression`.
 .. topic:: Shrinkage and sparsity with logistic regression
 
    The ``C`` parameter controls the amount of regularization in the
-   :class:`LogisticRegression` object: a large value for ``C`` results in
+   `LogisticRegression` object: a large value for ``C`` results in
    less regularization.
-   ``penalty="l2"`` gives :ref:`shrinkage` (i.e. non-sparse coefficients), while
-   ``penalty="l1"`` gives :ref:`sparsity`.
+   ``penalty="l2"`` gives `shrinkage` (i.e. non-sparse coefficients), while
+   ``penalty="l1"`` gives `sparsity`.
 
 .. topic:: **Exercise**
-   :class: green
+    green
 
    Try classifying the digits dataset with nearest neighbors and a linear
    model. Leave out the last 10% and test prediction performance on these
    observations.
 
-   .. literalinclude:: ../../auto_examples/exercises/plot_digits_classification_exercise.py
-       :lines: 15-19
-
-   Solution: :download:`../../auto_examples/exercises/plot_digits_classification_exercise.py`
 
 
 Support vector machines (SVMs)
@@ -408,7 +353,7 @@ Linear SVMs
 -------------
 
 
-:ref:`svm` belong to the discriminant model family: they try to find a combination of
+`svm` belong to the discriminant model family: they try to find a combination of
 samples to build a plane maximizing the margin between the two classes.
 Regularization is set by the ``C`` parameter: a small value for ``C`` means the margin
 is calculated using many or all of the observations around the separating line
@@ -416,31 +361,14 @@ is calculated using many or all of the observations around the separating line
 a large value for ``C`` means the margin is calculated on observations close to
 the separating line (less regularization).
 
-.. currentmodule :: mrex.svm
-
-.. |svm_margin_unreg| image:: /auto_examples/svm/images/sphx_glr_plot_svm_margin_001.png
-   :target: ../../auto_examples/svm/plot_svm_margin.html
-   :scale: 70
-
-.. |svm_margin_reg| image:: /auto_examples/svm/images/sphx_glr_plot_svm_margin_002.png
-   :target: ../../auto_examples/svm/plot_svm_margin.html
-   :scale: 70
-
-.. rst-class:: centered
-
-    ============================= ==============================
-     **Unregularized SVM**         **Regularized SVM (default)**
-    ============================= ==============================
-    |svm_margin_unreg|  	  |svm_margin_reg|
-    ============================= ==============================
 
 .. topic:: Example:
 
- - :ref:`sphx_glr_auto_examples_svm_plot_iris_svc.py`
+ - `sphx_glr_auto_examples_svm_plot_iris_svc.py`
 
 
-SVMs can be used in regression --:class:`SVR` (Support Vector Regression)--, or in
-classification --:class:`SVC` (Support Vector Classification).
+SVMs can be used in regression --`SVR` (Support Vector Regression)--, or in
+classification --`SVC` (Support Vector Classification).
 
 ::
 
@@ -466,88 +394,22 @@ build a decision function that is not linear but may be polynomial instead.
 This is done using the *kernel trick* that can be seen as
 creating a decision energy by positioning *kernels* on observations:
 
-.. |svm_kernel_linear| image:: /auto_examples/svm/images/sphx_glr_plot_svm_kernels_001.png
-   :target: ../../auto_examples/svm/plot_svm_kernels.html
-   :scale: 65
+::
 
-.. |svm_kernel_poly| image:: /auto_examples/svm/images/sphx_glr_plot_svm_kernels_002.png
-   :target: ../../auto_examples/svm/plot_svm_kernels.html
-   :scale: 65
-
-.. rst-class:: centered
-
-  .. list-table::
-
-     *
-
-       - **Linear kernel**
-
-       - **Polynomial kernel**
-
-
-
-     *
-
-       - |svm_kernel_linear|
-
-       - |svm_kernel_poly|
-
-
-
-     *
-
-       - ::
-
-            >>> svc = svm.SVC(kernel='linear')
-
-       - ::
-
-            >>> svc = svm.SVC(kernel='poly',
-            ...               degree=3)
-            >>> # degree: polynomial degree
-
-
-
-.. |svm_kernel_rbf| image:: /auto_examples/svm/images/sphx_glr_plot_svm_kernels_003.png
-   :target: ../../auto_examples/svm/plot_svm_kernels.html
-   :scale: 65
-
-.. rst-class:: centered
-
-  .. list-table::
-
-     *
-
-       - **RBF kernel (Radial Basis Function)**
-
-
-     *
-
-       - |svm_kernel_rbf|
-
-     *
-
-       - ::
-
-            >>> svc = svm.SVC(kernel='rbf')
-            >>> # gamma: inverse of size of
-            >>> # radial kernel
+    >>> svc = svm.SVC(kernel='rbf')
+    >>> # gamma: inverse of size of
+    >>> # radial kernel
 
 
 
 .. topic:: **Interactive example**
 
-   See the :ref:`SVM GUI <sphx_glr_auto_examples_applications_svm_gui.py>` to download
+   See the `SVM GUI <sphx_glr_auto_examples_applications_svm_gui.py>` to download
    ``svm_gui.py``; add data points of both classes with right and left button,
    fit the model and change parameters and data.
 
-.. image:: /auto_examples/datasets/images/sphx_glr_plot_iris_dataset_001.png
-    :target: ../../auto_examples/datasets/plot_iris_dataset.html
-    :align: right
-    :scale: 70
-
 .. topic:: **Exercise**
-   :class: green
+
 
    Try classifying classes 1 and 2 from the iris dataset with SVMs, with
    the 2 first features. Leave out 10% of each class and test prediction
@@ -559,7 +421,5 @@ creating a decision energy by positioning *kernels* on observations:
    **Hint**: You can use the ``decision_function`` method on a grid to get
    intuitions.
 
-   .. literalinclude:: ../../auto_examples/exercises/plot_iris_exercise.py
-       :lines: 18-23
 
-   Solution: :download:`../../auto_examples/exercises/plot_iris_exercise.py`
+   Solution:

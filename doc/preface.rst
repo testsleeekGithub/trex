@@ -18,8 +18,6 @@ Welcome to scikit-learn
 
 |
 
-.. toctree::
-    :maxdepth: 2
 
     install
     faq
